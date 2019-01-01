@@ -13,6 +13,9 @@
 %\usepackage[T1]{fontenc}
 %\usepackage[utf8]{inputenc}
 
+\usepackage{hyperref}
+
+
 %code stuff
 \usepackage{minted}
 \usepackage{verbatim}
@@ -75,9 +78,37 @@ However, such a code by itself is useless - because this \mintinline{Java}{Class
 \subsection{Data types}
   
 One of the biggest, most important concepts in programming, and perhaps in the modern world, is that there are different types of data. We use different types pf data to answer different types of questions. For example, if someone asks ``What type of cookies are those?'' - the response ``12'' is not helpful or useful. Similarly, if someone asks ``How many cookies do you have?'' and is answered with ``chocolate chip'' - the response is neither helpful nor useful. A specific question requires a specific type of response.\par
-In order to solve any problem, it is first important to understand what the problem is, the characteristics of the problem, and the likely characteristics of the solution. For example, if we are deciding on the types of cookies for a class party - some of the information we might need are numbers and type of cookies.\par
+In order to solve any problem, it is first important to understand what the problem is, the characteristics of the problem, and the likely characteristics of the solution. For example, if we are deciding on the types of cookies for a class party - some of the information we might need are numbers and type of cookies.\emph{Number} and \emph{Type} would be the data types we would use to discuss cookies. More cookie specific data types might include \emph{sugartype} or \emph{leaveningagent}. As can be seen with the cookie example - certain data types make more sense based on the environment. In a cookie specific environment \emph{sugartype} and \emph{leaveningagent} are very useful. However, in the design of cars they would be basically beside the point.\par
+Data types in programming are those types of data that have been found to be most useful in programming i.e. computer related tasks. Therefore, each programming language has its own built in set of a data types. There is significant overlap - because there is significant overlap in the function of purpose of computer languages - also there is significant overlap because all computer languages must be designed to work on computers i.e. the actual specifics and architecture of processors determines the shape that a programming language takes - e.g. certain data types reflect the amount of space available in the computer's working memory. \par
+\subsubsection{Data Types in Java}
+In Java, the built-in i.e. hard-coded data types are referred to as \emph{primitives}. The \emph{primitive} data types in Java include:
+\begin{itemize}
+\item Whole numbers
+  \begin{itemize}
+  \item byte - a \textbf{whole number} (\emph{integer}) between -128 and 127 (8 bits)
+  \item short - an \emph{integer} between -32768 and 32767 (16 bits)
+  \item int  - an \emph{integer} between -2,147,483,648 and 2,147,483,647 (32 bits)
+  \item long -  an \emph{integer} between 9,223,372,036,854,775,808 to
+    9,223,372,036,854,755,807 (64 bits)
+  \end{itemize}
+  %\begin{itemize}
+  \item Floating points (\textbf{decimal numbers})
+    \begin{itemize}
+    \item float - a decimal (\emph{floating point}) (32 bits)
+    \item double - a decimal (\emph{floating point}) (64 bits)
+    \end{itemize}
+  %  \begin{itemize}
+    \item Non numerical
+      \begin{itemize}
+      \item char - a Unicode character e.g. one single letter, one single number, one single type of punctuation, etc. 
+        \item boolean - true or false 
+      \end{itemize}
+\end{itemize}
+
+  
 
 
+See also the \href{https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html}{official Java documentation}. 
   
   
 \end{flushleft}
