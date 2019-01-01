@@ -1,9 +1,31 @@
+%\documentclass{book}
 \documentclass{article}
 
+%https://www.overleaf.com/learn/latex/Creating_a_document_in_LaTeX
+
+%https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
+
+%https://www.overleaf.com/learn/latex/TikZ_package
+
+
+%pretty stuff
+\usepackage{blindtext}
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+
+%code stuff
 \usepackage{minted}
 \usepackage{verbatim}
+
 \usemintedstyle{pastie}
 
+%\maketitle
+\title{A Guided Introduction to Thinking \emph{with} and \emph{about} Object Oriented Programming}
+
+\author{Don Davis, PhD}
+\date{\today}
+
+\setlength{\parindent}{5ex}
 \begin{document}
 
 \begin{comment}
@@ -17,23 +39,53 @@
 
 \begin{center}
 
- \textbf{A Guided Introduction to \\
-  Thinking \textit{with} and \textit{about} \\ 
-  Object Oriented Programming \\
-}
+  \textbf{
+ {\LARGE A Guided Introduction to \\
+  Thinking \emph{With} and \emph{About} \\ 
+  Object Oriented Programming \\}
+ }
 \end{center}
 
 \begin{flushleft}
-
-  The purpose of learning computer science, especially here at the high school level, is not to memorize syntax. Rather, we are working to develop approaches to solving problems. Some of the best tools that we have to solve problems are programming languages.\par
+%\chapter{Introduction}
+  \section{Introduction to Abstraction}
+  \setlength{\parindent}{5ex}
+  The purpose of learning computer science, especially at the high school level, is not to memorize syntax. Rather, we are working to develop approaches to solving problems. Some of the best tools that we have to solve problems are programming languages.\par
   Almost all programming languages help solve problems. Some languages are better suited to specific problems than other languages. There are many elements of a programming language that help solve problems. These elements can include built-in commands, data types, as well as the structure of the language itself.\par
+  When beginning a programming language, it is common to struggle over syntactical features such as commas, semi-colons, or indentation. Although, those elements must be correct for programs to work - they are \textit{minor details} that simply support the true purpose of a programming language - \textbf{solving problems}. The structure of the programming language itself determines how we solve problems - namely, how we \textit{de-construct} and think about problems. \par
+  When discussing programming languages, it is common to refer to \textit{low level} and \textit{high level} languages. By level, we are not refering to complexity but rather to the level of \textit{\textbf{abstraction}}. Whereby \textit{\textbf{abstraction}} refers to a general class - a broader collection of characteristcics or qualities. For example, when discussing the color \textit{red}, red does not refer to one specific color of one specific object, but rather refers to a color characteristic shared across objects that English speakers refer to as red. \par
+  With programming languages, \textit{abstraction} can be seen in the amount of specificity commonly required and utilized across a program. For example, does each instance of \textit{red} require a specific hex combination for each pixel on a screen to be manually specified or can the programmer more generally, simply refer to \textit{red}?\\
+ % \noindent
+  A \textit{low level} programming language such as \textbf{C} might require the programmer to be very specific and provide low level specifics such as actual memory bits of the computer. By contrast, a \textit{high level} programming language such as \textbf{Processing}, \textbf{Python}, or \textbf{Java} may very well hide such details from the programmer - allowing the programmer to focus on more \textit{abstract} i.e. 'big picture' ideas. \par
+  \section{Object Oriented Programming}
+  \emph{What is Object Oriented Programming} (OOP)? Quite simply stated, OOP is programming structured around \emph{objects} - conglomerations of qualities and characteristics - rather than always detailing specific interactions with the computer's memory. This \emph{object oriented} approach is intended to simplify work for the programmer and improve programming efficiency by closer approximating real world complexity and interactions.\par
+  \subsection{Generalization}
+  A programmer can work to defining interactions across entire \emph{classes} of objects rather than having to specify interactions for each specific instance. \textbf{\emph{But what does that mean????}}\par
+  \emph{\textbf{Imagine}} - if every time someone bought a new pair of shoes they had to learn a specific system for tying the laces on that particular pair of shoes. That would be highly inefficient. Rather, we as a society have developed a few methods of tying shoes. Learning to tie one type of shoe readily transfers to tying other types of shoe laces. The laborious process of learning to tie a specific type of shoe lace does not have to be repeated each time. Similarly, imagine that a shoemaker would not want to invent and create a new system for tying shoes each time they made a pair of shoes. Rather, a system would be created for tying shoes and that system could be \emph{inherited} by each pair of shoes that that shoemaker or other shoemakers could use. \par
+  \subsection{Classes}
+  \emph{\textbf{Imagine further}} - someone has developed a good underlying design (or \emph{template}) for shoes. In OOP, this can be refered to as a \emph{\textbf{class}}. In essence, a \emph{class} is like a recipe that can be used as the basic for making many similar, but differentiated, \emph{objects}. The shoemaker could create a \emph{class} (template, recipe, etc.) for a generic shoe design. That class could then be used to mass produce however many shoes of that type (with whatever specified variations) that the shoemaker wants. In terms of OOP, the shoe template would be the \emph{class} used to create individual shoe \emph{objects}, whereby each pair of shoes would be considered an \emph{instance} of \textbf{Class} Shoe.\par
+  As programmers, and problem solvers (e.g. think about Algebra), the goal is not to spend all our time focused on very specific problems. Rather, we attempt to represent and solve as many problems as possible at once. Sometimes, it may indeed be necessary to specify the behaviors for very particular interactions in very particular contexts. Cf., we may use particular greetings in particular situations (e.g. a specific handshake for a specific friend)- but before we develop specific greetings we develop a generalized greeting such as \emph{Hi!} that can be broadly applicable.\par
+  \textbf{\emph{But what does that mean????}} In short, as programmers and people, it is not time efficient to develop specific greetings for each individual person and take that approach to developing greetings for each possible random encounter. Someone could spend the better part of a month just planning out what they might say during a quick trip to the grocery store. Much more time effective is to plan a \emph{generalized} i.e. \emph{absracted} approach and simply plan on saying ``hello'' to everyone and plan exceptions from there. For example, plan on saying ``hello'' to everyone except for people whose name is known - then say ``hello \mintinline{c}{$personsname}.'' This \emph{abstracted} approach is the essence of OOP.\par
+  In Java, or other similarly \emph{object oriented} programming languages, a class might simply be defined by something such as:
+ \begin{minted}{Java}
+  Class Person{ }
+\end{minted}
+However, such a code by itself is useless - because this \mintinline{Java}{Class Person} does not actually attribute any qualities to a person nor does it provide a way to create more Person objects i.e. people. 
+
+\subsection{Data types}
+  
+One of the biggest, most important concepts in programming, and perhaps in the modern world, is that there are different types of data. We use different types pf data to answer different types of questions. For example, if someone asks ``What type of cookies are those?'' - the response ``12'' is not helpful or useful. Similarly, if someone asks ``How many cookies do you have?'' and is answered with ``chocolate chip'' - the response is neither helpful nor useful. A specific question requires a specific type of response.\par
+In order to solve any problem, it is first important to understand what the problem is, the characteristics of the problem, and the likely characteristics of the solution. For example, if we are deciding on the types of cookies for a class party - some of the information we might need are numbers and type of cookies.\par
+
+
+  
   
 \end{flushleft}
 
 
 \begin{minted}{c}
   int main() {
-    printf(``hello world''):
+    printf('hello world'):
     return 0;
   }
 \end{minted}
