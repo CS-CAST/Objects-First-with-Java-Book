@@ -8,6 +8,8 @@
 %https://www.overleaf.com/learn/latex/TikZ_package
 %https://tex.stackexchange.com/questions/223694/how-to-draw-a-text-box-with-shadow-borders-i-have-tried-the-following-but-it-gi
 
+%https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing
+
 %pretty stuff
 \usepackage{blindtext}
 \usepackage[skins]{tcolorbox}
@@ -189,8 +191,112 @@ In Java, units of code are enclosed in curly braces \emph{\{\}}. The code betwee
 
 %\[\left\{ 1 +\left\{2+\left\{3+4\left\{\right\}\right\}a\right\}\right\}\] \par
 
-Every Java program needs a \emph{main} method to run. The majority of the program's code may lie outside the \emph{main} method - however, code execution (what is run) begins here. \par
-The  \mintinline{Java}{public class} declaration specifies the name of the overarching program \emph{class} - consequently, the name of the file should match this \emph{class declaration}. \par
+Every Java program needs a \emph{main} method to run. The majority of the program's code may lie outside the \emph{main} method - however, code execution (what is run) begins here. \footnote{{For more discussion of the \emph{main} method in Java, see \href{https://stackoverflow.com/questions/890966/what-is-string-args-parameter-in-main-method-java}{this Stack Overflow answer}.}}  \par
+The  \mintinline{Java}{public class} declaration specifies the name of the overarching program \emph{class} - consequently, the name of the file should match this \emph{class declaration} i.e.  \mintinline{Java}{public class GenericProgramName} should be inside a file named \textbf{GenericProgramName.java}. \par
+
+\subsubsection{Most basic class with object in Java}
+\label{code:mostbasicclass}
+
+The most basic program whereby we could create an object would look like this:
+
+\begin{minted}{Java}
+public class GenericProgramName {
+    public static void main(String[] args) {
+        Person billy = new Person();
+    }
+}
+
+class Person {
+    public Person() {
+    }
+}
+
+\end{minted}
+
+There is the \emph{public class} declaration with the name of the program (matching the file name). This contains the \emph{main} method. In the \emph{main} method all that is accomplished is an empty Person \emph{object} named \textit{billy} is created. Lastly, after the actual  \mintinline{Java}{public class GenericProgramName{...}} the \mintinline{Java}{class Person} is created. However, \mintinline{Java}{class Person} is basically empty - there are no data types associated with \emph{Person} objects and  no \emph{methods}  except for an empty \textbf{class constructor}: \mintinline{Java}{public Person(){}}. \par
+
+\subsubsection{Using data types with a class in Java}
+When creating a \emph{class} \textbf{Person}, it may be useful to provide some attributes. \mintinline{Java}{class Person} is created here - there are no mandatory data types. It is at the discretion of the programmer to decide which data types may be most useful for \mintinline{Java}{class Person}.\footnote{The objects being created, as well as \emph{object oriented} programming in general, are not structured solely to help the computer run best - but rather, the design is to help people utilize the computer most efficiently. The objects, their data, their data labels, their methods - are all approaches used by the programmer to make a program do what she decides. For the computer, everything boils down to 1's and 0's - everything else is to help the programmer use the computer (i.e. program the computer) most effectively.}\par
+Defining Person objects, the programmer may want to use common person related qualities such as: age, last name, first name, and whether the person is still a student. Consequently, the \mintinline{Java}{class Person} will be created with the corresponding data types.
+
+\label{code:mostbasicdatatypes}
+\begin{minted}{Java}
+class Person {
+    int age; 
+    String lastname;
+    String firstname;
+    boolean isStudent;
+    public Person() {
+    }
+}
+\end{minted}
+
+However, \mintinline{Java}{class Person} still has the problem that age and name are not defined for Person objects. There are many possible solutions to this problem. Each solution has different advantages and disadvantages. As a programmer, we work not to find \textbf{THE} solution but rather to find \emph{the better} or \emph{most practical} solution to a given problem. As far as assigning common qualities to a Person object, we may want to start at the beginning - when an object is created i.e. when it is \emph{instantiated}. \par
+Objects, i.e. instances of a class, are created with the \emph{class constructor}. Previously, the object \emph{billy} was created with the line \mintinline{Java}{Person billy = new Person();} where \mintinline{Java}{new Person()} made a call to the \emph{class constructor}.\par
+
+\subsubsection{Passing information to \emph{constructors}}
+\label{code:simpleclassconstructor}
+
+
+We will then create a class contructor to accept values for first name, last name, age, and whether someone is still a student. Values are passed \emph{inside parentheses (...)}. The class constructor is the mechanism for creating new objects i.e. new \emph{instances} of a class. Consequently, we must specify which data should be passed to a class constructor. The variable names used inside the class constructor are \emph{only recognized \textbf{inside} the class constructor}. Consider:
+\begin{minted}{Java}
+  public Person(String fn) {
+    this.firstname = fn;
+    }
+}
+\end{minted}
+This class constructor allows us to create a person and specify their first name upon creation i.e. \mintinline{Java}{Person billy = new Person("billy");} creates a new Person object with the value \emph{billy} for the firstname variable. Note the use of \mintinline{Java}{this.firstname} - the \textbf{this} is used to insure that the value specified is assigned to the \emph{instance} being created. Here, the \emph{this} is not completely necessary but is important for developing good coding habits. Further, the ``\textbf{.}'' specifies that the firstname is the value for ``firstname'' belonging to \emph{this}. Elsewhere, the syntax \mintinline{Java}{billy.lastname} could be used to directly refer to the object \emph{billy}'s lastname value.\footnote{However, directly calling \mintinline{Java}{billy.lastname} is not the preferred practice in Java. Rather, \emph{getters} and \emph{setters} should be used. [These are discussed later.]}\par
+In order to pass more values at the creation of each Person \emph{instance}, we will need to specify the values to be passed. Continuing with in the same vein, we can create an additional constructor - one that looks almost identical but accepts more information. In Java, having duplicate constructors (or methods) with the same name that only differ by the data they accept, is called \emph{overloading}. Our new constructor that accepts first name, last name, and age is:
+\begin{minted}{Java}
+public Person(String fn, String ln, int a){
+        this.firstname=fn; 
+        this.lastname=ln;
+        this.age = a; 
+    }
+\end{minted}
+
+To use this constructor we would pass first name, last name, and age when creating a person object:\\
+\begin{minted}{Java}
+  Person suzy = new Person("Suzy", "Jenkins", 12);
+\end{minted}
+
+Notice that as with ``billy'' the names ``Suzy'' and ``Jenkins'' are in quotes. The quotation marks inform the \emph{compiler} that we are sending a \emph{String} and not a \textbf{variable}. \par
+The program thus far might appear so:
+\label{code:classesnomethods}
+\minted{Java}
+public class GenericProgramName {
+    public static void main(String[] args) {
+        // The magic starts here. 
+        Person billy = new Person("billy");
+        Person suzy = new Person("Suzy", "Jenkins", 12);
+    }
+}
+
+class Person {
+    int age; 
+    String lastname;
+    String firstname;
+    boolean isStudent; 
+    
+    public Person() {
+      //constructor one - no information is passed
+    }
+    
+    public Person(String fn){
+      this.firstname=fn;
+      //constructor two - only first name is set
+    }
+    
+     public Person(String fn, String ln, int a){
+        this.firstname=fn; 
+        this.lastname=ln;
+        this.age = a;
+        //constructor three - first name, last name, and age are set
+        
+    }
+}
+\end{minted}
+
 
 
 
