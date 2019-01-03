@@ -10,9 +10,12 @@
 
 %https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing
 
+%http://latexcolor.com/
+
 %pretty stuff
 \usepackage{blindtext}
-\usepackage[skins]{tcolorbox}
+%\usepackage[skins]{tcolorbox}
+\usepackage[most]{tcolorbox}
 \usepackage{xcolor}
 %\usepackage[T1]{fontenc}
 %\usepackage[utf8]{inputenc}
@@ -260,18 +263,19 @@ To use this constructor we would pass first name, last name, and age when creati
   Person suzy = new Person("Suzy", "Jenkins", 12);
 \end{minted}
 
-Notice that as with ``billy'' the names ``Suzy'' and ``Jenkins'' are in quotes. The quotation marks inform the \emph{compiler} that we are sending a \emph{String} and not a \textbf{variable}. \par
+\textbf{Notice}: as with ``billy'' the names ``Suzy'' and ``Jenkins'' are in quotes. The quotation marks inform the \emph{compiler} that we are sending a \emph{String} and not a \textbf{variable}. \par
 The program thus far might appear so:
 \label{code:classesnomethods}
-\minted{Java}
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=6in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+\begin{minted}{Java}
 public class GenericProgramName {
     public static void main(String[] args) {
-        // The magic starts here. 
         Person billy = new Person("billy");
         Person suzy = new Person("Suzy", "Jenkins", 12);
     }
 }
-
 class Person {
     int age; 
     String lastname;
@@ -292,11 +296,49 @@ class Person {
         this.lastname=ln;
         this.age = a;
         //constructor three - first name, last name, and age are set
-        
-    }
+     }
 }
 \end{minted}
+\end{tcolorbox}
 
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\definecolor{bananamania}{rgb}{0.98, 0.91, 0.71}
+
+\subsubsection{Doing stuff: Adding methods in Java}
+We have now created two \emph{objects} - ``billy'' and ``suzy'' both \emph{instances} of \mintinline{Java}{class Person}. However, our objects cannot do anything as of yet. For our objects to do stuff, we will want to create \emph{methods} that specify what our Person objects can do.\par
+%https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html
+To create a method, we will need to set \colorbox{pink}{access level/modifiers}, list the \colorbox{green}{return type}, give the method a \colorbox{babyblueeyes}{name}, specify any data to be passed (\colorbox{yellow}{parameters}), if any, and actually define what the method does (the \colorbox{bananamania}{method body}).\par
+First, we will create the method \emph{ \colorbox{babyblueeyes}{sayHi}\colorbox{yellow}{()}}. We will not specify an \colorbox{pink}{access modifier}. The access level then defaults to \emph{private-package} access. [The differences will be explained later.] Next, we specify the \colorbox{green}{return type} which will be \emph{\colorbox{green}{void}} because we will not be passing any data back to the program. For the program name, we will choose \colorbox{babyblueeyes}{sayHi} - the actual action. We will not be passing any \colorbox{yellow}{parameters} - because we do not need additional information to say ``hello.'' For our actual command in the \colorbox{bananamania}{method body} we will use the Java command to print a newline  \colorbox{bananamania}{\mintinline{Java}{System.out.println("Hello");}}.\\The resulting new method should be inside the Person class - because it is a method that belongs to \mintinline{Java}{class Person}:
+
+\label{code:sayhimethod}
+\begin{minted}{Java}
+  class Person {
+    ...
+    //The code has been trimmed to highlight the relevant bits.
+    
+    public Person(){
+      ...
+    }
+     
+    void sayHi(){
+      System.out.println("Hello");
+    }
+  }
+\end{minted}
+
+The command itself - \mintinline{Java}{System.out.println("Hello");} - (read backwards) consists of the \emph{println()} command which prints a new line containing whatever text is between the parentheses i.e. (\emph{``Hello''}). The println() command itself is a type of \emph{output} i.e. information coming out of the computer instead of going in. These \emph{out} options for \textbf{output} belong to the very large number of built-in \emph{System} commands available in Java.\par
+The command itself is like a backwards address going from largest to smallest component - similar to if one were to write their address from largest to smallest unit as \emph{USA.Texas.San Antonio.Navarro.someaddress()}.\par
+Now any Person object can use the method. For any method that belongs to a class, the object name is typed (here ``suzy'') followed by a dot ``\textbf{.}'' and then the name of the method with any parameters inside the parentheses.\footnote{We are not passing any information to the method so our parentheses are empty.} The method is then called inside the \textbf{main()} method - after the object has been created\footnote{An object that has not yet been created cannot be called.}. The resulting code:
+\begin{minted}{Java}
+  public static void main(String[] args) {
+    ...
+    suzy.sayHi();
+  }
+\end{minted}
+
+
+  
 
 
 
