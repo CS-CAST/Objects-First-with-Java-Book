@@ -266,7 +266,7 @@ To use this constructor we would pass first name, last name, and age when creati
 \textbf{Notice}: as with ``billy'' the names ``Suzy'' and ``Jenkins'' are in quotes. The quotation marks inform the \emph{compiler} that we are sending a \emph{String} and not a \textbf{variable}. \par
 The program thus far might appear so:
 \label{code:classesnomethods}
-\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=6in,center upper,
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=5.5in,center upper,
     fontupper=\bfseries,drop fuzzy shadow southeast,
     boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
 \begin{minted}{Java}
@@ -309,7 +309,13 @@ class Person {
 We have now created two \emph{objects} - ``billy'' and ``suzy'' both \emph{instances} of \mintinline{Java}{class Person}. However, our objects cannot do anything as of yet. For our objects to do stuff, we will want to create \emph{methods} that specify what our Person objects can do.\par
 %https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html
 To create a method, we will need to set \colorbox{pink}{access level/modifiers}, list the \colorbox{green}{return type}, give the method a \colorbox{babyblueeyes}{name}, specify any data to be passed (\colorbox{yellow}{parameters}), if any, and actually define what the method does (the \colorbox{bananamania}{method body}).\par
-First, we will create the method \emph{ \colorbox{babyblueeyes}{sayHi}\colorbox{yellow}{()}}. We will not specify an \colorbox{pink}{access modifier}. The access level then defaults to \emph{private-package} access. [The differences will be explained later.] Next, we specify the \colorbox{green}{return type} which will be \emph{\colorbox{green}{void}} because we will not be passing any data back to the program. For the program name, we will choose \colorbox{babyblueeyes}{sayHi} - the actual action. We will not be passing any \colorbox{yellow}{parameters} - because we do not need additional information to say ``hello.'' For our actual command in the \colorbox{bananamania}{method body} we will use the Java command to print a newline  \colorbox{bananamania}{\mintinline{Java}{System.out.println("Hello");}}.\\The resulting new method should be inside the Person class - because it is a method that belongs to \mintinline{Java}{class Person}:
+First, we will create the method \emph{ \colorbox{babyblueeyes}{sayHi}\colorbox{yellow}{()}}. We will not specify an \colorbox{pink}{access modifier}. The access level then defaults to \emph{private-package} access. [The differences will be explained later.] Next, we specify the \colorbox{green}{return type} which will be \emph{\colorbox{green}{void}} because we will not be passing any data back to the program. For the program name, we will choose \colorbox{babyblueeyes}{sayHi} - the actual action. We will not be passing any \colorbox{yellow}{parameters} - because we do not need additional information to say ``hello.'' For our actual command in the \colorbox{bananamania}{method body} we will use the Java command to print a newline  \colorbox{bananamania}{\mintinline{Java}{System.out.println("Hello");}}.\par
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=5in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+  In short, the code is structured: \colorbox{green}{void}\colorbox{babyblueeyes}{sayHi}\colorbox{yellow}{()}\{\colorbox{bananamania}{System.out.println("Hello");}\}.
+  \end{tcolorbox}
+The resulting new method should be inside the Person class - because it is a method that belongs to \mintinline{Java}{class Person}:
 
 \label{code:sayhimethod}
 \begin{minted}{Java}
@@ -329,7 +335,7 @@ First, we will create the method \emph{ \colorbox{babyblueeyes}{sayHi}\colorbox{
 
 The command itself - \mintinline{Java}{System.out.println("Hello");} - (read backwards) consists of the \emph{println()} command which prints a new line containing whatever text is between the parentheses i.e. (\emph{``Hello''}). The println() command itself is a type of \emph{output} i.e. information coming out of the computer instead of going in. These \emph{out} options for \textbf{output} belong to the very large number of built-in \emph{System} commands available in Java.\par
 The command itself is like a backwards address going from largest to smallest component - similar to if one were to write their address from largest to smallest unit as \emph{USA.Texas.San Antonio.Navarro.someaddress()}.\par
-Now any Person object can use the method. For any method that belongs to a class, the object name is typed (here ``suzy'') followed by a dot ``\textbf{.}'' and then the name of the method with any parameters inside the parentheses.\footnote{We are not passing any information to the method so our parentheses are empty.} The method is then called inside the \textbf{main()} method - after the object has been created\footnote{An object that has not yet been created cannot be called.}. The resulting code:
+Now any Person object can use the method. For any method that belongs to a class, the object name is typed (here ``suzy'') followed by a dot ``\textbf{.}'' and then the name of the method with any parameters inside the parentheses.\footnote{We are not passing any information to the method so our parentheses are empty.} The method is then called inside the \textbf{main()} method - after the object has been created.\footnote{An object that has not yet been created cannot be called.} The resulting code:
 \begin{minted}{Java}
   public static void main(String[] args) {
     ...
@@ -338,10 +344,98 @@ Now any Person object can use the method. For any method that belongs to a class
 \end{minted}
 
 
-  
+\subsubsection{\textit{Need to know}: Using \emph{getters} and \emph{setters}
+}
+In Java, objects may have various data associated with them. Hypothetically, the data could be directly accessed by listing the object a dot ``\textbf{.}'' and the variable name i.e. \emph{suzy\textbf{.}age}. Such direct access is not the preferred approach in Java as it can lead to problematic security and other issues in the long term. Consequently, the preferred practice in Java is to use \emph{getter} and \emph{setter} methods whereby \textbf{private} data is accessed through \textbf{public} methods - guaranteeing that variables are only accessed on a \emph{need to know} basis.\par
+\subsubsection{Getting \emph{getters}}
+We will first create getters to access the values associated with each object. Currently, the possible values for a Person object are age (\emph{an integer}), last name (\emph{a String}), first name (\emph{a String}), and whether an object is still a student (\emph{a boolean} i.e. true or false). To access these data, we have the methods \mintinline{Java}{return} the value. \textbf{Returning} a value means that the method gives the value to the program itself. \textbf{NOTE:} \emph{nothing is printed by default - printing is a separate command provided for the user \textbf{NOT} the program itself}.  
+As with other methods, \emph{getters} specify access, which should be \textbf{public}, the return type, which is that variables type, a method name that clarifies what the method does, and a method body, which here quite simply \textbf{returns} the variable value for the particular object calling it. The methods, as with other class methods, go inside the class itself - typically after the constructor(s). The code itself:\footnote{Getters, setters, and constructors can be generated in Netbeans by pressing \emph{alt}+\emph{insert}.}\par
+
+\label{code:gettersperson}
+\begin{minted}{Java}
+public int getAge() {
+  return age;
+}
+
+public String getLastname() {
+  return lastname;
+}
+
+public String getFirstname() {
+  return firstname;
+}
+
+public boolean isIsStudent() {
+  return isStudent;
+}
+\end{minted}
+
+Hypothetically, we could now run the code \mintinline{Java}{suzy.getAge()} inside our \emph{main()} method. It would run but we would not see anything - because users to not see what values are returned to the program - unless a \emph{method} such as \emph{print} is used. Consequently, we could use \textbf{System.out.println()} in combination with \textbf{suzy.getAge()} to see the results of the call, i.e., \mintinline{Java}{System.out.println(suzy.getAge());}.\par
+However, this only prints the number by itself. We might want to do something a little more involved - combining mutliple commands.
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=4in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+  \begin{minted}{Java}
+    System.out.println("Hello, my name is " +
+    suzy.getFirstname()  + ". I am " +
+    suzy.getAge() + " years old.");    
+  \end{minted}
+\end{tcolorbox}
+\noindent This command, placed in the \emph{main()} method creates a sentence combining text and output from two of the \emph{getters}.
+\subsubsection{Setting \emph{setters}}
+We retrieved information using \emph{getters}. What if we want to change information? \emph{Setters} are perhaps even more important to a programs overall security and utility. Namely, \textbf{\emph{setters}} determine whether and \emph{how} information can be changed.\par
+As with other methods, \emph{setters} need an  \colorbox{pink}{access type}, \colorbox{green}{return} type, method \colorbox{babyblueeyes}{name}, and actual \colorbox{bananamania}{method body}. \par
+First, let us focus on changing the object's age value creating a method \emph{ \colorbox{babyblueeyes}{setAge}\colorbox{yellow}{()}}. As with \emph{getters}, we will continue to use the \textbf{public} \colorbox{pink}{access modifier} (for now). Next, we specify the \colorbox{green}{return type} which will be \emph{\colorbox{green}{void}} because we will not be passing any data back to the program - we are setting a value for an object, not expecting communication across methods. For the program name, we will choose \colorbox{babyblueeyes}{setAge} - a clear description of what we are doing. We will be passing \textbf{age} as a \colorbox{yellow}{parameter} as we will want to specify the object's age. This value will be an \emph{int} because we have set the variable to be a whole number. The actual command in the \colorbox{bananamania}{method body}, using \textbf{this}, a dot \textbf{.} and the variable name \emph{age}, we will specify that the particular object's age will be changed to the value supplied for \emph{age}. The equal sign \textbf{=} signifies that one value (\mintinline{Java}{this.age}) is being set to another value (the \emph{age} value passed to the method). \\ Our resulting method would be:
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=4in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+ \colorbox{pink}{public }\colorbox{green}{void }\colorbox{babyblueeyes}{setAge}\colorbox{yellow}{(int age)}\textbf{\{}\colorbox{bananamania}{this.age=age;}\textbf{\}}.
+  \end{tcolorbox}
+\par
+
+Creating setters, which are commonly placed before \emph{getters} in the \emph{class} definition, for all variables defined so far for \mintinline{Java}{class Person} would produce:
+
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=4in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+  \begin{minted}{Java}
+    public void setAge(int age) {
+      this.age = age;
+    }
+    
+    public void setLastname(String lastname) {
+      this.lastname = lastname;
+    }
+    
+    public void setFirstname(String firstname) {
+      this.firstname = firstname;
+    }
+    
+    public void setIsStudent(boolean isStudent) {
+      this.isStudent = isStudent;
+    }
+  \end{minted}
+\end{tcolorbox}
+
+%https://tex.stackexchange.com/questions/371286/draw-a-horizontal-line-in-latex/371469
+
+\vspace{6pt}
 
 
 
+\begin{center}
+\line(1,0){250}
+\end{center}
+
+\noindent
+\rule{\textwidth}{0.4pt}
+
+
+\hrule
+\begin{center}
+\line(1,0){250}
+\end{center}
+\subsection{Questions for review}
 
 
 
@@ -352,10 +446,14 @@ Now any Person object can use the method. For any method that belongs to a class
 \end{flushleft}
 
 
+\begin{comment}
 \begin{minted}{c}
   int main() {
     printf('hello world'):
     return 0;
   }
 \end{minted}
+\end{comment}
+
+
 \end{document}
