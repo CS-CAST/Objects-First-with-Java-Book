@@ -12,6 +12,8 @@
 
 %http://latexcolor.com/
 
+%https://stackoverflow.com/questions/1491717/how-to-display-a-content-in-two-column-layout-in-latex
+\usepackage{multicol}
 %pretty stuff
 \usepackage{blindtext}
 %\usepackage[skins]{tcolorbox}
@@ -470,6 +472,61 @@ Creating setters, which are commonly placed before \emph{getters} in the \emph{c
 \end{enumerate}
 
 %\end{code}
+
+%Section 2 - control flow begins here
+\newpage
+\section{{\LARGE Control flow}}
+
+Objects are \emph{very} important to effective programming. It is beneficial to learn to thing of programming in terms of objects first - in order to work more effectively with an \emph{object oriented} language such as Java. However, many of the tools that make programming powerful precede wide spread use of objects in programming.\footnote{Newer is not always better.} It is important to understand and affect flow in a programming language, if we are to use computers effectively.\par
+
+\subsection{Order matters}
+First, it is important to consider that actions are executed in order. Imagine if we are creating and eating a virtual peanut butter sandwich, the following order should succeed:
+\begin{itemize}
+\item open the bread
+\item take out to slices of bread
+\item spread peanut butter on the bread
+\item place peanut butter faces together
+\item eat sandwich
+\end{itemize}
+However, if we were to try:
+\begin{itemize}
+\item spread peanut butter on the bread
+\item open the bread
+\item take out to slices of bread
+\item place peanut butter faces together
+\item eat sandwich
+\end{itemize}
+The program (or \emph{algorithm}) would fail on the first step - because no bread is available.\par
+Consider the following two examples using objects:
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=5in,center upper,fontupper=\bfseries,drop fuzzy shadow southeast,boxrule=0.4pt,sharp corners,colframe=aliceblue!80!black,colback=gray!10]
+
+  {\Large Example 1}
+ % \begin{multicols}{2}
+  \begin{minted}{Java}
+    Person suzy = new Person("Suzy", "Jenkins", 12);
+    suzy.sayHi();}
+  \end{minted}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=5in,center upper,fontupper=\bfseries,drop fuzzy shadow southeast,boxrule=0.4pt,sharp corners,colframe=pink!80!red,colback=pink!10]
+  {\Large Example 2}
+  \begin{minted}{Java}
+    suzy.sayHi();
+    Person suzy = new Person("Suzy", "Jenkins", 12);
+  \end{minted}
+  %\end{multicols}
+\end{tcolorbox}
+
+Example 1 succeeds because the \emph{suzy} \textbf{object} is created before the method \mintinline{Java}{sayHi()} is called. The second example \textcolor{red}{fails} because \mintinline{Java}{suzy.sayHi()} tries to call the \emph{suzy} object's \mintinline{Java}{sayHi()} method before there is a suzy object.\par
+\begin{center}
+\begin{tcolorbox}[enhanced,width=5in,center upper,size=fbox,
+    fontupper=\large\bfseries,drop shadow southwest,sharp corners]
+\textbf{In short, commands are executed in the order written.}
+\end{tcolorbox}
+\end{center}
+
 
 
 
