@@ -12,6 +12,10 @@
 
 %http://latexcolor.com/
 
+
+\usepackage{tabu}
+%https://www.overleaf.com/learn/latex/Tables
+
 %https://stackoverflow.com/questions/1491717/how-to-display-a-content-in-two-column-layout-in-latex
 \usepackage{multicol}
 %pretty stuff
@@ -528,9 +532,97 @@ Example 1 succeeds because the \emph{suzy} \textbf{object} is created before the
 \end{center}
 
 
+\newpage
+% iteration practice based on students' missed questions
+
+\subsection{Iteration practice}
+
+
+
+
+
+
+%\begin{comment}
+\begin{tabu} { | X[l] | X[c] | }
+  %\sloppy
+ \hline
+ \textbf{Iteration}  & \textbf{Value of \emph{i} \\
+ \hline
+ iteration 0  & \  \\
+ iteration 1 &  \\
+ iteration 2 &  \\
+ iteration 3 &  \\
+ iteration 4 &  \\
+ iteration 5 &  \\
+ iteration 6 &  \\
+ iteration 7 &  \\
+ iteration 8 &  \\
+ iteration 9 &  \\
+ iteration 10 &  \\
+ iteration 11 &  \\
+
+\hline
+\end{tabu}
+%\end{comment}
+
+
+\begin{comment}
+\begin{center}
+\begin{tabular}{ c c c }
+ cell1 & cell2 & cell3 \\ 
+ cell4 & cell5 & cell6 \\  
+ cell7 & cell8 & cell9    
+\end{tabular}
+\end{center}
+\end{comment}
+
+\begin{comment}
+\begin{tabu} to 1.8\textwidth { | X[l] | X[c] | X[r] | }
+ \hline
+ Iterat  & Value of I & item 13 \\
+ \hline
+ item 21  & item 22  & item 23  \\
+\hline
+\end{tabu}
+\end{comment}
+
+
+
+\begin{minted}{Java}
+  int a = 1;
+  
+  for(int i = 0; i < 10; ) {
+    a++;
+    if((a % 2) == 0){
+    i++;
+  }
+  }
+    System.out.println(a);
+\end{minted}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{flushleft}
+
+
+
+
+
+
+
+
 
 
 \begin{comment}
