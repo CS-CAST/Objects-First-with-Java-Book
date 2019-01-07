@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.31)  7 JAN 2019 10:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.31)  7 JAN 2019 10:38
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1608,21 +1608,28 @@ Overfull \hbox (16.34999pt too wide) in paragraph at lines 531--531
 
 (./_minted-java0/920E53AA80E01EC8310E3708FA09B18216E928EB86A0D64767B923619438F0
 AC.pygtex) [16]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 624.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 624.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 649.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 649.
  (./java0.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 624.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 624.
-Package rerunfilecheck Info: File `java0.out' has not changed.
-(rerunfilecheck)             Checksum: FB9E3E9ADECB2017FDC74B34F7270A32;1570.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 649.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 649.
+
+
+Package rerunfilecheck Warning: File `java0.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `java0.out':
+(rerunfilecheck)             Before: 0F0A73AFB67B026DAEF16A0ED490BB00;1502
+(rerunfilecheck)             After:  FB9E3E9ADECB2017FDC74B34F7270A32;1570.
 runsystem(rm java0.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 35165 strings out of 494587
- 715059 string characters out of 6177758
- 835770 words of memory out of 5000000
- 38129 multiletter control sequences out of 15000+600000
+ 35186 strings out of 494587
+ 715251 string characters out of 6177758
+ 831926 words of memory out of 5000000
+ 38150 multiletter control sequences out of 15000+600000
  539931 words of font info for 50 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  63i,13n,101p,1323b,1059s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1642,10 +1649,10 @@ sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on java0.pdf (16 pages, 241691 bytes).
+Output written on java0.pdf (16 pages, 242195 bytes).
 PDF statistics:
- 315 PDF objects out of 1000 (max. 8388607)
- 254 compressed objects within 3 object streams
+ 312 PDF objects out of 1000 (max. 8388607)
+ 251 compressed objects within 3 object streams
  63 named destinations out of 1000 (max. 500000)
- 325 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 317 words of extra memory for PDF output out of 10000 (max. 10000000)
 
