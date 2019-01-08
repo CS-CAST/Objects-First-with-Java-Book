@@ -1,0 +1,18 @@
+\BOOKMARK [1][-]{section.1}{Introduction to Abstraction}{}% 1
+\BOOKMARK [1][-]{section.2}{Object Oriented Programming}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Generalization}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Classes}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Data types}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Data Types in Java}{subsection.2.3}% 6
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Strings}{subsection.2.3}% 7
+\BOOKMARK [2][-]{subsection.2.4}{Using Data Types}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.5}{First Worked Example - An object-first approach}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.5.1}{The main class in Java}{subsection.2.5}% 10
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Most basic class with object in Java}{subsection.2.5}% 11
+\BOOKMARK [3][-]{subsubsection.2.5.3}{Using data types with a class in Java}{subsection.2.5}% 12
+\BOOKMARK [3][-]{subsubsection.2.5.4}{Passing information to constructors}{subsection.2.5}% 13
+\BOOKMARK [3][-]{subsubsection.2.5.5}{Doing stuff: Adding methods in Java}{subsection.2.5}% 14
+\BOOKMARK [3][-]{subsubsection.2.5.6}{Need to know: Using getters and setters }{subsection.2.5}% 15
+\BOOKMARK [3][-]{subsubsection.2.5.7}{Getting getters}{subsection.2.5}% 16
+\BOOKMARK [3][-]{subsubsection.2.5.8}{Setting setters}{subsection.2.5}% 17
+\BOOKMARK [2][-]{subsection.2.6}{Questions for review}{section.2}% 18

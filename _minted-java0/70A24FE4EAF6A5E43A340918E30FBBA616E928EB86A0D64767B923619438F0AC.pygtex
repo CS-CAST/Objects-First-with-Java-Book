@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getAge}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+  \PYG{k}{return} \PYG{n}{age}\PYG{o}{;}
+\PYG{o}{\PYGZcb{}}
+
+\PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{getLastname}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+  \PYG{k}{return} \PYG{n}{lastname}\PYG{o}{;}
+\PYG{o}{\PYGZcb{}}
+
+\PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{getFirstname}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+  \PYG{k}{return} \PYG{n}{firstname}\PYG{o}{;}
+\PYG{o}{\PYGZcb{}}
+
+\PYG{k+kd}{public} \PYG{k+kt}{boolean} \PYG{n+nf}{isIsStudent}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+  \PYG{k}{return} \PYG{n}{isStudent}\PYG{o}{;}
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

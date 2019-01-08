@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k+kd}{public} \PYG{k+kt}{void} \PYG{n+nf}{setAge}\PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{age}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+      \PYG{k}{this}\PYG{o}{.}\PYG{n+na}{age} \PYG{o}{=} \PYG{n}{age}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{k+kd}{public} \PYG{k+kt}{void} \PYG{n+nf}{setLastname}\PYG{o}{(}\PYG{n}{String} \PYG{n}{lastname}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+      \PYG{k}{this}\PYG{o}{.}\PYG{n+na}{lastname} \PYG{o}{=} \PYG{n}{lastname}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{k+kd}{public} \PYG{k+kt}{void} \PYG{n+nf}{setFirstname}\PYG{o}{(}\PYG{n}{String} \PYG{n}{firstname}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+      \PYG{k}{this}\PYG{o}{.}\PYG{n+na}{firstname} \PYG{o}{=} \PYG{n}{firstname}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{k+kd}{public} \PYG{k+kt}{void} \PYG{n+nf}{setIsStudent}\PYG{o}{(}\PYG{k+kt}{boolean} \PYG{n}{isStudent}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+      \PYG{k}{this}\PYG{o}{.}\PYG{n+na}{isStudent} \PYG{o}{=} \PYG{n}{isStudent}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+\end{Verbatim}

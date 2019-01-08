@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{public} \PYG{n+nf}{Person}\PYG{o}{(}\PYG{n}{String} \PYG{n}{fn}\PYG{o}{,} \PYG{n}{String} \PYG{n}{ln}\PYG{o}{,} \PYG{k+kt}{int} \PYG{n}{a}\PYG{o}{)\PYGZob{}}
+        \PYG{k}{this}\PYG{o}{.}\PYG{n+na}{firstname}\PYG{o}{=}\PYG{n}{fn}\PYG{o}{;}
+        \PYG{k}{this}\PYG{o}{.}\PYG{n+na}{lastname}\PYG{o}{=}\PYG{n}{ln}\PYG{o}{;}
+        \PYG{k}{this}\PYG{o}{.}\PYG{n+na}{age} \PYG{o}{=} \PYG{n}{a}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+\end{Verbatim}

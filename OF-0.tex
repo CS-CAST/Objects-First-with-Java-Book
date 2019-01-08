@@ -1,0 +1,649 @@
+%\documentclass{book}
+\documentclass{article}
+
+%https://www.overleaf.com/learn/latex/Creating_a_document_in_LaTeX
+
+%https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
+
+%https://www.overleaf.com/learn/latex/TikZ_package
+%https://tex.stackexchange.com/questions/223694/how-to-draw-a-text-box-with-shadow-borders-i-have-tried-the-following-but-it-gi
+
+%https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing
+
+%http://latexcolor.com/
+
+
+\usepackage{tabu}
+%https://www.overleaf.com/learn/latex/Tables
+
+%https://stackoverflow.com/questions/1491717/how-to-display-a-content-in-two-column-layout-in-latex
+\usepackage{multicol}
+%pretty stuff
+\usepackage{blindtext}
+%\usepackage[skins]{tcolorbox}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+
+%https://tex.stackexchange.com/questions/341924/automatically-set-different-colors-for-matching-brackets
+\makeatletter
+\newcount\bracketnum
+\newcommand\makecolorlist[1]{%
+    \bracketnum0\relax
+    \makecolorlist@#1,.%
+    \bracketnum0\relax
+}
+\def\makecolorlist@#1,{%
+    \advance\bracketnum1\relax
+    \expandafter\def\csname bracketcolor\the\bracketnum\endcsname{\color{#1}}%
+    \@ifnextchar.{\@gobble}{\makecolorlist@}%
+}
+\let\oldleft\left
+\let\oldright\right
+\def\left#1{%
+    \global\advance\bracketnum1\relax 
+    \colorlet{temp}{.}%
+    \csname bracketcolor\the\bracketnum\endcsname
+    \oldleft#1%
+    \color{temp}%
+}
+\def\right#1{%
+    \colorlet{temp}{.}%
+    \csname bracketcolor\the\bracketnum\endcsname
+    \oldright#1%
+    \global\advance\bracketnum-1\relax
+    \color{temp}%
+}
+\makeatother
+
+
+\makecolorlist{red,blue,orange, purple,green}
+
+
+
+
+
+\usepackage{hyperref}
+
+
+%code stuff
+\usepackage{minted}
+\usepackage{verbatim}
+
+\usemintedstyle{pastie}
+
+%\maketitle
+\title{A Guided Introduction to Thinking \emph{with} and \emph{about} Object Oriented Programming}
+
+\author{Don Davis, PhD}
+\date{\today}
+
+\setlength{\parindent}{5ex}
+\begin{document}
+
+\begin{comment}
+
+  1. Explain why object oriented programming
+  2. Rabbit example
+  3. Work backwards from Pokemon-like linked list example
+  
+
+\end{comment}
+
+\begin{center}
+
+  \textbf{
+ {\LARGE A Guided Introduction to \\
+  Thinking \emph{With} and \emph{About} \\ 
+  Object Oriented Programming \\}
+ }
+\end{center}
+
+\begin{flushleft}
+%\chapter{Introduction}
+  \section{Introduction to Abstraction}
+  \setlength{\parindent}{5ex}
+  The purpose of learning computer science, especially at the high school level, is not to memorize syntax. Rather, we are working to develop approaches to solving problems. Some of the best tools that we have to solve problems are programming languages.\par
+  Almost all programming languages help solve problems. Some languages are better suited to specific problems than other languages. There are many elements of a programming language that help solve problems. These elements can include built-in commands, data types, as well as the structure of the language itself.\par
+  When beginning a programming language, it is common to struggle over syntactical features such as commas, semi-colons, or indentation. Although, those elements must be correct for programs to work - they are \textit{minor details} that simply support the true purpose of a programming language - \textbf{solving problems}. The structure of the programming language itself determines how we solve problems - namely, how we \textit{de-construct} and think about problems. \par
+  When discussing programming languages, it is common to refer to \textit{low level} and \textit{high level} languages. By level, we are not refering to complexity but rather to the level of \textit{\textbf{abstraction}}. Whereby \textit{\textbf{abstraction}} refers to a general class - a broader collection of characteristcics or qualities. For example, when discussing the color \textit{red}, red does not refer to one specific color of one specific object, but rather refers to a color characteristic shared across objects that English speakers refer to as red. \par
+  With programming languages, \textit{abstraction} can be seen in the amount of specificity commonly required and utilized across a program. For example, does each instance of \textit{red} require a specific hex combination for each pixel on a screen to be manually specified or can the programmer more generally, simply refer to \textit{red}?\\
+ % \noindent
+  A \textit{low level} programming language such as \textbf{C} might require the programmer to be very specific and provide low level specifics such as actual memory bits of the computer. By contrast, a \textit{high level} programming language such as \textbf{Processing}, \textbf{Python}, or \textbf{Java} may very well hide such details from the programmer - allowing the programmer to focus on more \textit{abstract} i.e. 'big picture' ideas. \par
+  \section{Object Oriented Programming}
+  \emph{What is Object Oriented Programming} (OOP)? Quite simply stated, OOP is programming structured around \emph{objects} - conglomerations of qualities and characteristics - rather than always detailing specific interactions with the computer's memory. This \emph{object oriented} approach is intended to simplify work for the programmer and improve programming efficiency by closer approximating real world complexity and interactions.\par
+  \subsection{Generalization}
+  A programmer can work to defining interactions across entire \emph{classes} of objects rather than having to specify interactions for each specific instance. \textbf{\emph{But what does that mean????}}\par
+  \emph{\textbf{Imagine}} - if every time someone bought a new pair of shoes they had to learn a specific system for tying the laces on that particular pair of shoes. That would be highly inefficient. Rather, we as a society have developed a few methods of tying shoes. Learning to tie one type of shoe readily transfers to tying other types of shoe laces. The laborious process of learning to tie a specific type of shoe lace does not have to be repeated each time. Similarly, imagine that a shoemaker would not want to invent and create a new system for tying shoes each time they made a pair of shoes. Rather, a system would be created for tying shoes and that system could be \emph{inherited} by each pair of shoes that that shoemaker or other shoemakers could use. \par
+  \subsection{Classes}
+  \emph{\textbf{Imagine further}} - someone has developed a good underlying design (or \emph{template}) for shoes. In OOP, this can be refered to as a \emph{\textbf{class}}. In essence, a \emph{class} is like a recipe that can be used as the basic for making many similar, but differentiated, \emph{objects}. The shoemaker could create a \emph{class} (template, recipe, etc.) for a generic shoe design. That class could then be used to mass produce however many shoes of that type (with whatever specified variations) that the shoemaker wants. In terms of OOP, the shoe template would be the \emph{class} used to create individual shoe \emph{objects}, whereby each pair of shoes would be considered an \emph{instance} of \textbf{Class} Shoe.\par
+  As programmers, and problem solvers (e.g. think about Algebra), the goal is not to spend all our time focused on very specific problems. Rather, we attempt to represent and solve as many problems as possible at once. Sometimes, it may indeed be necessary to specify the behaviors for very particular interactions in very particular contexts. Cf., we may use particular greetings in particular situations (e.g. a specific handshake for a specific friend)- but before we develop specific greetings we develop a generalized greeting such as \emph{Hi!} that can be broadly applicable.\par
+  \textbf{\emph{But what does that mean????}} In short, as programmers and people, it is not time efficient to develop specific greetings for each individual person and take that approach to developing greetings for each possible random encounter. Someone could spend the better part of a month just planning out what they might say during a quick trip to the grocery store. Much more time effective is to plan a \emph{generalized} i.e. \emph{absracted} approach and simply plan on saying ``hello'' to everyone and plan exceptions from there. For example, plan on saying ``hello'' to everyone except for people whose name is known - then say ``hello \mintinline{c}{$personsname}.'' This \emph{abstracted} approach is the essence of OOP.\par
+  In Java, or other similarly \emph{object oriented} programming languages, a class might simply be defined by something such as:
+ \begin{minted}{Java}
+  Class Person{ }
+\end{minted}
+However, such a code by itself is useless - because this \mintinline{Java}{Class Person} does not actually attribute any qualities to a person nor does it provide a way to create more Person objects i.e. people. 
+
+\subsection{Data types}
+  
+One of the biggest, most important concepts in programming, and perhaps in the modern world, is that there are different types of data. We use different types pf data to answer different types of questions. For example, if someone asks ``What type of cookies are those?'' - the response ``12'' is not helpful or useful. Similarly, if someone asks ``How many cookies do you have?'' and is answered with ``chocolate chip'' - the response is neither helpful nor useful. A specific question requires a specific type of response.\par
+In order to solve any problem, it is first important to understand what the problem is, the characteristics of the problem, and the likely characteristics of the solution. For example, if we are deciding on the types of cookies for a class party - some of the information we might need are numbers and type of cookies.\emph{Number} and \emph{Type} would be the data types we would use to discuss cookies. More cookie specific data types might include \emph{sugar-type} or \emph{leavening-agent}. As can be seen with the cookie example - certain data types make more sense based on the environment. In a cookie specific environment \emph{sugar-type} and \emph{leavening-agent} are very useful. However, in the design of cars they would basically be useless.\par
+Data types in programming are those types of data that have been found to be most useful in programming i.e. computer related tasks. Therefore, each programming language has its own built in set of a data types. There is significant overlap - because there is significant overlap in the function of purpose of computer languages - also there is significant overlap because all computer languages must be designed to work on computers i.e. the actual specifics and architecture of processors determines the shape that a programming language takes - e.g. certain data types reflect the amount of space available in the computer's working memory. \par
+\subsubsection{Data Types in Java}
+In Java, the built-in i.e. hard-coded data types are referred to as \emph{primitives}. The \emph{primitive} data types in Java include:
+
+\begin{tcolorbox}[enhanced,width=5in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southwest,
+    boxrule=0.4pt,sharp corners,colframe=yellow!80!black,colback=yellow!10]
+\begin{itemize}
+\item Whole numbers
+  \begin{itemize}
+  \item byte - a \textbf{whole number} (\emph{integer}) between -128 and 127 (8 bits)
+  \item short - an \emph{integer} between -32768 and 32767 (16 bits)
+  \item int  - an \emph{integer} between -2,147,483,648 and 2,147,483,647 (32 bits)
+  \item long -  an \emph{integer} between 9,223,372,036,854,775,808 and
+    9,223,372,036,854,755,807 (64 bits)
+  \end{itemize}
+  %\begin{itemize}
+  \item Floating points (\textbf{decimal numbers})
+    \begin{itemize}
+    \item float - a decimal (\emph{floating point}) (32 bits)
+    \item double - a decimal (\emph{floating point}) (64 bits)
+    \end{itemize}
+  %  \begin{itemize}
+    \item Non numerical
+      \begin{itemize}
+      \item char - a Unicode character e.g. one single letter, one single number, one single type of punctuation, etc. 
+        \item boolean - true or false 
+      \end{itemize}
+\end{itemize}
+\end{tcolorbox}
+
+
+{\footnotesize See also the \href{https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html}{official Java documentation}.} 
+\subsubsection{Strings}
+Another very common data type, that is \textbf{not} a \emph{primitive} is the  \mintinline{Java}{String}. A  \mintinline{Java}{String} is simply an \emph{array} (i.e. list) of characters. For example,  \mintinline{Java}{String name=''John Doe''} contains all the characters and spaces for J-o-h-n-space-D-o-e. Because \emph{Strings} are \emph{objects}, they are able to perform actions (\emph{methods}) not readily available to other primitives.  
+
+\subsection{Using Data Types}
+In short, \emph{classes} are recipes that create \emph{objects} which do things (with \emph{methods}) and contain \emph{data}. There is perhaps no absolutely perfect way to organize data. However, some approaches to working with data are more useful than others. At the end of the day, programming, and indeed much of what we do in our lives, revolves around the organization and restructuring of data in new and useful ways.\par
+\begin{tcolorbox}[enhanced,width=5in,center upper,size=fbox,
+    fontupper=\large\bfseries,drop shadow southwest,sharp corners]
+\textbf{Java is an \emph{object oriented} programming language - which means that the language is structured to work with data as aspects of \emph{objects}.}
+\end{tcolorbox}
+Earlier, the example of the empty \mintinline{Java}{Class Person} was given, which was basically an empty recipe with no way of being made and no associated data. In order to do anything meaningful however, we will want to create \emph{objects} that have data and can do things i.e. have \emph{methods}. \footnote{Note: many introductions to Java would include the typical ``Hello World'' example as the first program. However, to build a practiced, conceptual understanding of Java as an \emph{object oriented} language - and to reinforce and better practice \emph{object oriented} thinking - this text is written to emphasize an \emph{objects} first approach. }\par
+%add tikz diagram here of student with data types
+\subsection{First Worked Example - An \emph{object}-first approach}
+
+In Java, basically everything occurs in relationship to some \emph{Class}. Indeed, every Java program \textbf{must} have a \emph{main class}. 
+
+%\begin{code}
+\subsubsection{The \textbf{main} class in Java}
+\label{code:main}
+\begin{minted}{Java}
+  public class GenericProgramName {
+    public static void main(String[] args) {
+        // The magic starts here.
+    }  
+  }
+\end{minted}
+
+The most important aspects to note (for now) in this example are:
+\begin{itemize}
+\item the curly braces \emph{\{\}}
+\item the actual \emph{main method} i.e.  \mintinline{Java}{ public static void main(String[] args) {}}
+\item the actual \emph{class} name for the overarching program i.e. \emph{GenericProgramName}
+\end{itemize}
+
+In Java, units of code are enclosed in curly braces \emph{\{\}}. The code between the first ``\emph{\{}'' and last ``\emph{\}}'' belongs together. Of course, this can, and often is, subdivided into further little bits. It may help to think of curly braces \emph{\{\}} as boxes holding code. As with boxes, larger boxes can contain varied combinations of boxes within boxes - so too is true of curly braces cf. \emph{\[\left\{\left\{\left\{\left\{\right\}\left\{\right\}\right\}\right\}\right\}\]} \par
+
+%\[\left\{ 1 +\left\{2+\left\{3+4\left\{\right\}\right\}a\right\}\right\}\] \par
+
+Every Java program needs a \emph{main} method to run. The majority of the program's code may lie outside the \emph{main} method - however, code execution (what is run) begins here. \footnote{{For more discussion of the \emph{main} method in Java, see \href{https://stackoverflow.com/questions/890966/what-is-string-args-parameter-in-main-method-java}{this Stack Overflow answer}.}}  \par
+The  \mintinline{Java}{public class} declaration specifies the name of the overarching program \emph{class} - consequently, the name of the file should match this \emph{class declaration} i.e.  \mintinline{Java}{public class GenericProgramName} should be inside a file named \textbf{GenericProgramName.java}. \par
+
+\subsubsection{Most basic class with object in Java}
+\label{code:mostbasicclass}
+
+The most basic program whereby we could create an object would look like this:
+
+\begin{minted}{Java}
+public class GenericProgramName {
+    public static void main(String[] args) {
+        Person billy = new Person();
+    }
+}
+
+class Person {
+    public Person() {
+    }
+}
+
+\end{minted}
+
+There is the \emph{public class} declaration with the name of the program (matching the file name). This contains the \emph{main} method. In the \emph{main} method all that is accomplished is an empty Person \emph{object} named \textit{billy} is created. Lastly, after the actual  \mintinline{Java}{public class GenericProgramName{...}} the \mintinline{Java}{class Person} is created. However, \mintinline{Java}{class Person} is basically empty - there are no data types associated with \emph{Person} objects and  no \emph{methods}  except for an empty \textbf{class constructor}: \mintinline{Java}{public Person(){}}. \par
+
+\subsubsection{Using data types with a class in Java}
+When creating a \emph{class} \textbf{Person}, it may be useful to provide some attributes. \mintinline{Java}{class Person} is created here - there are no mandatory data types. It is at the discretion of the programmer to decide which data types may be most useful for \mintinline{Java}{class Person}.\footnote{The objects being created, as well as \emph{object oriented} programming in general, are not structured solely to help the computer run best - but rather, the design is to help people utilize the computer most efficiently. The objects, their data, their data labels, their methods - are all approaches used by the programmer to make a program do what she decides. For the computer, everything boils down to 1's and 0's - everything else is to help the programmer use the computer (i.e. program the computer) most effectively.}\par
+Defining Person objects, the programmer may want to use common person related qualities such as: age, last name, first name, and whether the person is still a student. Consequently, the \mintinline{Java}{class Person} will be created with the corresponding data types.
+
+\label{code:mostbasicdatatypes}
+\begin{minted}{Java}
+class Person {
+    int age; 
+    String lastname;
+    String firstname;
+    boolean isStudent;
+    public Person() {
+    }
+}
+\end{minted}
+
+However, \mintinline{Java}{class Person} still has the problem that age and name are not defined for Person objects. There are many possible solutions to this problem. Each solution has different advantages and disadvantages. As a programmer, we work not to find \textbf{THE} solution but rather to find \emph{the better} or \emph{most practical} solution to a given problem. As far as assigning common qualities to a Person object, we may want to start at the beginning - when an object is created i.e. when it is \emph{instantiated}. \par
+Objects, i.e. instances of a class, are created with the \emph{class constructor}. Previously, the object \emph{billy} was created with the line \mintinline{Java}{Person billy = new Person();} where \mintinline{Java}{new Person()} made a call to the \emph{class constructor}.\par
+
+\subsubsection{Passing information to \emph{constructors}}
+\label{code:simpleclassconstructor}
+
+
+We will then create a class contructor to accept values for first name, last name, age, and whether someone is still a student. Values are passed \emph{inside parentheses (...)}. The class constructor is the mechanism for creating new objects i.e. new \emph{instances} of a class. Consequently, we must specify which data should be passed to a class constructor. The variable names used inside the class constructor are \emph{only recognized \textbf{inside} the class constructor}. Consider:
+\begin{minted}{Java}
+  public Person(String fn) {
+    this.firstname = fn;
+    }
+}
+\end{minted}
+This class constructor allows us to create a person and specify their first name upon creation i.e. \mintinline{Java}{Person billy = new Person("billy");} creates a new Person object with the value \emph{billy} for the firstname variable. Note the use of \mintinline{Java}{this.firstname} - the \textbf{this} is used to insure that the value specified is assigned to the \emph{instance} being created. Here, the \emph{this} is not completely necessary but is important for developing good coding habits. Further, the ``\textbf{.}'' specifies that the firstname is the value for ``firstname'' belonging to \emph{this}. Elsewhere, the syntax \mintinline{Java}{billy.lastname} could be used to directly refer to the object \emph{billy}'s lastname value.\footnote{However, directly calling \mintinline{Java}{billy.lastname} is not the preferred practice in Java. Rather, \emph{getters} and \emph{setters} should be used. [These are discussed later.]}\par
+In order to pass more values at the creation of each Person \emph{instance}, we will need to specify the values to be passed. Continuing with in the same vein, we can create an additional constructor - one that looks almost identical but accepts more information. In Java, having duplicate constructors (or methods) with the same name that only differ by the data they accept, is called \emph{overloading}. Our new constructor that accepts first name, last name, and age is:
+\begin{minted}{Java}
+public Person(String fn, String ln, int a){
+        this.firstname=fn; 
+        this.lastname=ln;
+        this.age = a; 
+    }
+\end{minted}
+
+To use this constructor we would pass first name, last name, and age when creating a person object:\\
+\begin{minted}{Java}
+  Person suzy = new Person("Suzy", "Jenkins", 12);
+\end{minted}
+
+\textbf{Notice}: as with ``billy'' the names ``Suzy'' and ``Jenkins'' are in quotes. The quotation marks inform the \emph{compiler} that we are sending a \emph{String} and not a \textbf{variable}. \par
+The program thus far might appear so:
+\label{code:classesnomethods}
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=5.5in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+\begin{minted}{Java}
+public class GenericProgramName {
+    public static void main(String[] args) {
+        Person billy = new Person("billy");
+        Person suzy = new Person("Suzy", "Jenkins", 12);
+    }
+}
+class Person {
+    int age; 
+    String lastname;
+    String firstname;
+    boolean isStudent; 
+    
+    public Person() {
+      //constructor one - no information is passed
+    }
+    
+    public Person(String fn){
+      this.firstname=fn;
+      //constructor two - only first name is set
+    }
+    
+     public Person(String fn, String ln, int a){
+        this.firstname=fn; 
+        this.lastname=ln;
+        this.age = a;
+        //constructor three - first name, last name, and age are set
+     }
+}
+\end{minted}
+\end{tcolorbox}
+
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\definecolor{bananamania}{rgb}{0.98, 0.91, 0.71}
+
+\subsubsection{Doing stuff: Adding methods in Java}
+We have now created two \emph{objects} - ``billy'' and ``suzy'' both \emph{instances} of \mintinline{Java}{class Person}. However, our objects cannot do anything as of yet. For our objects to do stuff, we will want to create \emph{methods} that specify what our Person objects can do.\par
+%https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html
+To create a method, we will need to set \colorbox{pink}{access level/modifiers}, list the \colorbox{green}{return type}, give the method a \colorbox{babyblueeyes}{name}, specify any data to be passed (\colorbox{yellow}{parameters}), if any, and actually define what the method does (the \colorbox{bananamania}{method body}).\par
+First, we will create the method \emph{ \colorbox{babyblueeyes}{sayHi}\colorbox{yellow}{()}}. We will not specify an \colorbox{pink}{access modifier}. The access level then defaults to \emph{private-package} access. [The differences will be explained later.] Next, we specify the \colorbox{green}{return type} which will be \emph{\colorbox{green}{void}} because we will not be passing any data back to the program. For the program name, we will choose \colorbox{babyblueeyes}{sayHi} - the actual action. We will not be passing any \colorbox{yellow}{parameters} - because we do not need additional information to say ``hello.'' For our actual command in the \colorbox{bananamania}{method body} we will use the Java command to print a newline  \colorbox{bananamania}{\mintinline{Java}{System.out.println("Hello");}}.\par
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=5in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+  In short, the code is structured: \colorbox{green}{void}\colorbox{babyblueeyes}{sayHi}\colorbox{yellow}{()}\{\colorbox{bananamania}{System.out.println("Hello");}\}.
+  \end{tcolorbox}
+The resulting new method should be inside the Person class - because it is a method that belongs to \mintinline{Java}{class Person}:
+
+\label{code:sayhimethod}
+\begin{minted}{Java}
+  class Person {
+    ...
+    //The code has been trimmed to highlight the relevant bits.
+    
+    public Person(){
+      ...
+    }
+     
+    void sayHi(){
+      System.out.println("Hello");
+    }
+  }
+\end{minted}
+
+The command itself - \mintinline{Java}{System.out.println("Hello");} - (read backwards) consists of the \emph{println()} command which prints a new line containing whatever text is between the parentheses i.e. (\emph{``Hello''}). The println() command itself is a type of \emph{output} i.e. information coming out of the computer instead of going in. These \emph{out} options for \textbf{output} belong to the very large number of built-in \emph{System} commands available in Java.\par
+The command itself is like a backwards address going from largest to smallest component - similar to if one were to write their address from largest to smallest unit as \emph{USA.Texas.San Antonio.Navarro.someaddress()}.\par
+Now any Person object can use the method. For any method that belongs to a class, the object name is typed (here ``suzy'') followed by a dot ``\textbf{.}'' and then the name of the method with any parameters inside the parentheses.\footnote{We are not passing any information to the method so our parentheses are empty.} The method is then called inside the \textbf{main()} method - after the object has been created.\footnote{An object that has not yet been created cannot be called.} The resulting code:
+\begin{minted}{Java}
+  public static void main(String[] args) {
+    ...
+    suzy.sayHi();
+  }
+\end{minted}
+
+
+\subsubsection{\textit{Need to know}: Using \emph{getters} and \emph{setters}
+}
+In Java, objects may have various data associated with them. Hypothetically, the data could be directly accessed by listing the object a dot ``\textbf{.}'' and the variable name i.e. \emph{suzy\textbf{.}age}. Such direct access is not the preferred approach in Java as it can lead to problematic security and other issues in the long term. Consequently, the preferred practice in Java is to use \emph{getter} and \emph{setter} methods whereby \textbf{private} data is accessed through \textbf{public} methods - guaranteeing that variables are only accessed on a \emph{need to know} basis.\par
+\subsubsection{Getting \emph{getters}}
+We will first create getters to access the values associated with each object. Currently, the possible values for a Person object are age (\emph{an integer}), last name (\emph{a String}), first name (\emph{a String}), and whether an object is still a student (\emph{a boolean} i.e. true or false). To access these data, we have the methods \mintinline{Java}{return} the value. \textbf{Returning} a value means that the method gives the value to the program itself. \textbf{NOTE:} \emph{nothing is printed by default - printing is a separate command provided for the user \textbf{NOT} the program itself}.  
+As with other methods, \emph{getters} specify access, which should be \textbf{public}, the return type, which is that variables type, a method name that clarifies what the method does, and a method body, which here quite simply \textbf{returns} the variable value for the particular object calling it. The methods, as with other class methods, go inside the class itself - typically after the constructor(s). The code itself:\footnote{Getters, setters, and constructors can be generated in Netbeans by pressing \emph{alt}+\emph{insert}.}\par
+
+\label{code:gettersperson}
+\begin{minted}{Java}
+public int getAge() {
+  return age;
+}
+
+public String getLastname() {
+  return lastname;
+}
+
+public String getFirstname() {
+  return firstname;
+}
+
+public boolean isIsStudent() {
+  return isStudent;
+}
+\end{minted}
+
+Hypothetically, we could now run the code \mintinline{Java}{suzy.getAge()} inside our \emph{main()} method. It would run but we would not see anything - because users to not see what values are returned to the program - unless a \emph{method} such as \emph{print} is used. Consequently, we could use \textbf{System.out.println()} in combination with \textbf{suzy.getAge()} to see the results of the call, i.e., \mintinline{Java}{System.out.println(suzy.getAge());}.\par
+However, this only prints the number by itself. We might want to do something a little more involved - combining mutliple commands.
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=4in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+  \begin{minted}{Java}
+    System.out.println("Hello, my name is " +
+    suzy.getFirstname()  + ". I am " +
+    suzy.getAge() + " years old.");    
+  \end{minted}
+\end{tcolorbox}
+\noindent This command, placed in the \emph{main()} method creates a sentence combining text and output from two of the \emph{getters}.
+\subsubsection{Setting \emph{setters}}
+We retrieved information using \emph{getters}. What if we want to change information? \emph{Setters} are perhaps even more important to a programs overall security and utility. Namely, \textbf{\emph{setters}} determine whether and \emph{how} information can be changed.\par
+As with other methods, \emph{setters} need an  \colorbox{pink}{access type}, \colorbox{green}{return} type, method \colorbox{babyblueeyes}{name}, and actual \colorbox{bananamania}{method body}. \par
+First, let us focus on changing the object's age value creating a method \emph{ \colorbox{babyblueeyes}{setAge}\colorbox{yellow}{()}}. As with \emph{getters}, we will continue to use the \textbf{public} \colorbox{pink}{access modifier} (for now). Next, we specify the \colorbox{green}{return type} which will be \emph{\colorbox{green}{void}} because we will not be passing any data back to the program - we are setting a value for an object, not expecting communication across methods. For the program name, we will choose \colorbox{babyblueeyes}{setAge} - a clear description of what we are doing. We will be passing \textbf{age} as a \colorbox{yellow}{parameter} as we will want to specify the object's age. This value will be an \emph{int} because we have set the variable to be a whole number. The actual command in the \colorbox{bananamania}{method body}, using \textbf{this}, a dot \textbf{.} and the variable name \emph{age}, we will specify that the particular object's age will be changed to the value supplied for \emph{age}. The equal sign \textbf{=} signifies that one value (\mintinline{Java}{this.age}) is being set to another value (the \emph{age} value passed to the method). \\ Our resulting method would be:
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=4in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+ \colorbox{pink}{public }\colorbox{green}{void }\colorbox{babyblueeyes}{setAge}\colorbox{yellow}{(int age)}\textbf{\{}\colorbox{bananamania}{this.age=age;}\textbf{\}}.
+  \end{tcolorbox}
+\par
+
+Creating setters, which are commonly placed before \emph{getters} in the \emph{class} definition, for all variables defined so far for \mintinline{Java}{class Person} would produce:
+
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=4in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southeast,
+    boxrule=0.4pt,sharp corners,colframe=gray!80!black,colback=gray!10]
+  \begin{minted}{Java}
+    public void setAge(int age) {
+      this.age = age;
+    }
+    
+    public void setLastname(String lastname) {
+      this.lastname = lastname;
+    }
+    
+    public void setFirstname(String firstname) {
+      this.firstname = firstname;
+    }
+    
+    public void setIsStudent(boolean isStudent) {
+      this.isStudent = isStudent;
+    }
+  \end{minted}
+\end{tcolorbox}
+
+%https://tex.stackexchange.com/questions/371286/draw-a-horizontal-line-in-latex/371469
+
+%\vspace{6pt}
+\newpage
+\begin{center}
+\line(1,0){250}
+\end{center}
+\noindent
+\rule{\textwidth}{0.4pt}
+%\hrule
+\begin{center}
+\line(1,0){250}
+\end{center}
+\subsection{{\LARGE Questions for review}}
+           {\Large In writing - answer the following.}
+           
+\begin{enumerate}
+\item In your own words, what is \emph{object oriented} programming?
+
+\item Why do we use object oriented programming?
+
+\item How and why do we use a \emph{class}?
+
+
+\item Create a class \textbf{Animal}. \\The class should have:
+  \\
+   \begin{enumerate}
+   \item \textbf{Five} different \textbf{data types}
+   \item Two \emph{different} \textbf{class constructors}
+   \item Three \emph{getters}
+   \item Three \emph{setters}
+   \item Three other action methods that use \mintinline{Java}{System.out.*}
+   \end{enumerate}
+
+\item \emph{Instantiate} three different animals with different characteristics
+
+  \item Write and explain three code examples of those animal objects using the methods you created. \textit{You should pass data to at least one of the methods}.
+  
+\item Explain, in your own words, Why do we use \emph{getters}? Also - Give a code example.
+  
+\item Explain, in your own words, Why do we use \textbf{setters}? Also - Give a code example.
+
+\item Explain, in your own words, Why do we create objects?
+
+\item How do we know that we have created a new \emph{object}?
+
+\item What is the code for the \emph{main} method in Java?
+
+  \item When and why do we use the main method in Java?
+  
+\end{enumerate}
+\end{document}
+%\end{code}
+
+%Section 2 - control flow begins here
+\newpage
+\section{{\LARGE Control flow}}
+
+Objects are \emph{very} important to effective programming. It is beneficial to learn to thing of programming in terms of objects first - in order to work more effectively with an \emph{object oriented} language such as Java. However, many of the tools that make programming powerful precede wide spread use of objects in programming.\footnote{Newer is not always better.} It is important to understand and affect flow in a programming language, if we are to use computers effectively.\par
+
+\subsection{Order matters}
+First, it is important to consider that actions are executed in order. Imagine if we are creating and eating a virtual peanut butter sandwich, the following order should succeed:
+\begin{itemize}
+\item open the bread
+\item take out to slices of bread
+\item spread peanut butter on the bread
+\item place peanut butter faces together
+\item eat sandwich
+\end{itemize}
+However, if we were to try:
+\begin{itemize}
+\item spread peanut butter on the bread
+\item open the bread
+\item take out to slices of bread
+\item place peanut butter faces together
+\item eat sandwich
+\end{itemize}
+The program (or \emph{algorithm}) would fail on the first step - because no bread is available.\par
+Consider the following two examples using objects:
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=5in,center upper,fontupper=\bfseries,drop fuzzy shadow southeast,boxrule=0.4pt,sharp corners,colframe=aliceblue!80!black,colback=gray!10]
+
+  {\Large Example 1}
+ % \begin{multicols}{2}
+  \begin{minted}{Java}
+    Person suzy = new Person("Suzy", "Jenkins", 12);
+    suzy.sayHi();}
+  \end{minted}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[enhanced,breakable, before upper={\let\clearpage\relax}, width=5in,center upper,fontupper=\bfseries,drop fuzzy shadow southeast,boxrule=0.4pt,sharp corners,colframe=pink!80!red,colback=pink!10]
+  {\Large Example 2}
+  \begin{minted}{Java}
+    suzy.sayHi();
+    Person suzy = new Person("Suzy", "Jenkins", 12);
+  \end{minted}
+  %\end{multicols}
+\end{tcolorbox}
+
+Example 1 succeeds because the \emph{suzy} \textbf{object} is created before the method \mintinline{Java}{sayHi()} is called. The second example \textcolor{red}{fails} because \mintinline{Java}{suzy.sayHi()} tries to call the \emph{suzy} object's \mintinline{Java}{sayHi()} method before there is a suzy object.\par
+\begin{center}
+\begin{tcolorbox}[enhanced,width=5in,center upper,size=fbox,
+    fontupper=\large\bfseries,drop shadow southwest,sharp corners]
+\textbf{In short, commands are executed in the order written.}
+\end{tcolorbox}
+\end{center}
+
+
+\newpage
+% iteration practice based on students' missed questions
+
+\subsection{Iteration practice}
+
+
+
+
+
+
+%\begin{comment}
+\begin{tabu} { | X[l] | X[c] | }
+  %\sloppy
+ \hline
+ \textbf{Iteration}  & \textbf{Value of \emph{i}} \\
+ \hline
+ iteration 0  & \  \\
+ \hline
+ iteration 1 &  \ \\
+ \hline
+ iteration 2 &  \ \\
+ \hline
+ iteration 3 &  \  \\
+ \hline
+ iteration 4 &  \ \\
+ \hline
+ iteration 5 &  \ \\
+ \hline
+ iteration 6 &  \ \\
+ \hline
+ iteration 7 &  \ \\
+ \hline
+ iteration 8 &  \ \\
+ \hline
+ iteration 9 &  \ \\
+ \hline
+ iteration 10 &  \ \\
+ \hline
+ iteration 11 &  \ \\
+
+\hline
+\end{tabu}
+%\end{comment}
+
+
+\begin{comment}
+\begin{center}
+\begin{tabular}{ c c c }
+ cell1 & cell2 & cell3 \\ 
+ cell4 & cell5 & cell6 \\  
+ cell7 & cell8 & cell9    
+\end{tabular}
+\end{center}
+\end{comment}
+
+\begin{comment}
+\begin{tabu} to 1.8\textwidth { | X[l] | X[c] | X[r] | }
+ \hline
+ Iterat  & Value of I & item 13 \\
+ \hline
+ item 21  & item 22  & item 23  \\
+\hline
+\end{tabu}
+\end{comment}
+
+
+
+\begin{minted}{Java}
+  int a = 1;
+  
+  for(int i = 0; i < 10; ) {
+    a++;
+    if((a % 2) == 0){
+    i++;
+  }
+  }
+    System.out.println(a);
+\end{minted}
+
+
+%\end{comment}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{flushleft}
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+\begin{minted}{c}
+  int main() {
+    printf('hello world'):
+    return 0;
+  }
+\end{minted}
+\end{comment}
+
+
+

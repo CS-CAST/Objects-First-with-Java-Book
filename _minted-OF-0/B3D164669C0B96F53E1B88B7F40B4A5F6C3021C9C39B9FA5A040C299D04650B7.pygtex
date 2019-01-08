@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kd}{class} \PYG{n+nc}{Person} \PYG{o}{\PYGZob{}}
+    \PYG{o}{...}
+    \PYG{c+c1}{//The code has been trimmed to highlight the relevant bits.}
+
+    \PYG{k+kd}{public} \PYG{n+nf}{Person}\PYG{o}{()\PYGZob{}}
+      \PYG{o}{...}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{k+kt}{void} \PYG{n+nf}{sayHi}\PYG{o}{()\PYGZob{}}
+      \PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Hello\PYGZdq{}}\PYG{o}{);}
+    \PYG{o}{\PYGZcb{}}
+  \PYG{o}{\PYGZcb{}}
+\end{Verbatim}

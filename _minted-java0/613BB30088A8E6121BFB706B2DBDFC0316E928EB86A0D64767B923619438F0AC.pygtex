@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{GenericProgramName} \PYG{o}{\PYGZob{}}
+    \PYG{k+kd}{public} \PYG{k+kd}{static} \PYG{k+kt}{void} \PYG{n+nf}{main}\PYG{o}{(}\PYG{n}{String}\PYG{o}{[]} \PYG{n}{args}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+        \PYG{c+c1}{// The magic starts here.}
+    \PYG{o}{\PYGZcb{}}
+  \PYG{o}{\PYGZcb{}}
+  \PYG{err}{\PYGZbs{}}\PYG{n}{label}\PYG{o}{\PYGZob{}}\PYG{n}{lst}\PYG{o}{:}\PYG{n}{main}\PYG{o}{\PYGZcb{}}
+\end{Verbatim}
