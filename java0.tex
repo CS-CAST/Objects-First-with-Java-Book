@@ -11,7 +11,7 @@
 %https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing
 
 %http://latexcolor.com/
-
+%\usepackage[T1]{fontenc}
 
 \usepackage{tabu}
 %https://www.overleaf.com/learn/latex/Tables
@@ -23,7 +23,7 @@
 %\usepackage[skins]{tcolorbox}
 \usepackage[most]{tcolorbox}
 \usepackage{xcolor}
-%\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc}
 %\usepackage[utf8]{inputenc}
 
 %https://tex.stackexchange.com/questions/341924/automatically-set-different-colors-for-matching-brackets
@@ -531,15 +531,70 @@ Example 1 succeeds because the \emph{suzy} \textbf{object} is created before the
 \end{tcolorbox}
 \end{center}
 
+Such a \emph{sequential order} is the default order of completion, i.e. one thing then the next. 
+%https://www.cs.fsu.edu/~myers/c++/notes/control1.html
+
+The other types of order are \emph{selection} and \emph{repetition}.
+
+\subsection{Selection structures}
+\subsubsection{\textbf{if} statements}
+
+The most common and versatile of selection statements in Java is the \textbf{if} statement.
+The basic structure of the \emph{if} statement is \emph{if}\textbf{(some condition)}\emph{\{What happens if the condition is true;\}}
+For example, the following statement is \textbf{true} so it will run once and exit.
+\begin{minted}{Java}
+
+  if(true){
+    System.out.println(``This will print once and end.'');
+  }
+
+\end{minted}
+
+By contrast, the following code begins has the integer i set to 1, so it executes because \emph{\textbf{i}} is less than 10, then quits.
+
+\begin{minted}{Java}
+int i = 1; 
+  if(i<10){
+    System.out.println(``This will print once and end.'');
+  }
+
+\end{minted}
+
+\noindent Common \textbf{equality and relational operators} for Java are:
+\begin{itemize}
+\item{\textbf{<}} less than - e.g. \mintinline{Java}{if (a < b){ action();}} executes if a is less than b
+\item{\textbf{>}} greater than - e.g. \mintinline{Java}{if (a > b){ action();}} executes if a is greater than b
+\item{\textbf{==}} equal to - e.g. \mintinline{Java}{if (a == b){ action();}} executes if a is equivalent to b
+\item{\textbf{!=}} not equal to - e.g. \mintinline{Java}{if (a != b){ action();}} executes if a is not equal to b
+\item{\textbf{<=}} less than or equal to - e.g. \mintinline{Java}{if (a <= b){ action();}} executes if a is less than \emph{or equal to} b
+\item{\textbf{>=}} greater than or equal to - e.g. \mintinline{Java}{if (a >= b){ action();}} executes if a is greater than \emph{or equal to} b
+\end{itemize}
+
+\subsubsection{\textbf{if else} statements}
+In Java, \textbf{if} is commonly combined with \textbf{else}.
+Perhaps most straight forward is specifying one condition and having a default action if that condition is not true.
+For example, the following code will print ``pass'' if the \textbf{integer} \emph{grade} is \emph{greater than} or \emph{equal to} 70.
+
+\begin{minted}{Java}
+  if (grade >= 70){
+    System.out.println(``pass'');
+  } else {
+    System.out.println(``fail'');
+    }
+
+  \end{minted}
+
+
+%https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html
+%https://docs.oracle.com/javase/tutorial/java/nutsandbolts/if.html
+%https://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html
+%https://www.cs.fsu.edu/~myers/c++/notes/control1.html
+
 
 \newpage
 % iteration practice based on students' missed questions
 
 \subsection{Iteration practice}
-
-
-
-
 
 %http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/tabu/tabu.pdf
 
