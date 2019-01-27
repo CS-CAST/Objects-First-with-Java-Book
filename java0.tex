@@ -104,11 +104,12 @@
 %\chapter{Introduction}
   \section{Introduction to Abstraction}
   \setlength{\parindent}{5ex}
-  The purpose of learning computer science, especially at the high school level, is not to memorize syntax. Rather, we are working to develop approaches to solving problems. Some of the best tools that we have to solve problems are programming languages.\par
+  The purpose of learning computer science, especially at the high school level, is not to memorize syntax\footnote{The specific minutiae of how a language is written e.g. using commas or semicolons.}. Rather, we are working to develop approaches to solving problems. Some of the best tools that we have to solve problems are programming languages.\par
   Almost all programming languages help solve problems. Some languages are better suited to specific problems than other languages. There are many elements of a programming language that help solve problems. These elements can include built-in commands, data types, as well as the structure of the language itself.\par
   When beginning a programming language, it is common to struggle over syntactical features such as commas, semi-colons, or indentation. Although, those elements must be correct for programs to work - they are \textit{minor details} that simply support the true purpose of a programming language - \textbf{solving problems}. The structure of the programming language itself determines how we solve problems - namely, how we \textit{de-construct} and think about problems. \par
-  When discussing programming languages, it is common to refer to \textit{low level} and \textit{high level} languages. By level, we are not refering to complexity but rather to the level of \textit{\textbf{abstraction}}. Whereby \textit{\textbf{abstraction}} refers to a general class - a broader collection of characteristcics or qualities. For example, when discussing the color \textit{red}, red does not refer to one specific color of one specific object, but rather refers to a color characteristic shared across objects that English speakers refer to as red. \par
-  With programming languages, \textit{abstraction} can be seen in the amount of specificity commonly required and utilized across a program. For example, does each instance of \textit{red} require a specific hex combination for each pixel on a screen to be manually specified or can the programmer more generally, simply refer to \textit{red}?\\
+  When discussing programming languages, it is common to refer to \textit{low level} and \textit{high level} languages. By level, we are not referring to complexity but rather to the level of \textit{\textbf{abstraction}}. Whereby \textit{\textbf{abstraction}} refers to a general class - a broader collection of characteristcics or qualities. \par
+  For example, when discussing the color \textit{red}, red does not refer to one specific color of one specific object, but rather refers to a color characteristic shared across objects that English speakers refer to as red. \par
+  With programming languages, \textit{abstraction} can be seen in the amount of specificity commonly required and utilized across a program. For example, does each instance of \textit{red} require a specific hex combination for each pixel on a screen to be manually specified or can the programmer simply refer to \textit{red}?\\
  % \noindent
   A \textit{low level} programming language such as \textbf{C} might require the programmer to be very specific and provide low level specifics such as actual memory bits of the computer. By contrast, a \textit{high level} programming language such as \textbf{Processing}, \textbf{Python}, or \textbf{Java} may very well hide such details from the programmer - allowing the programmer to focus on more \textit{abstract} i.e. 'big picture' ideas. \par
   \section{Object Oriented Programming}
@@ -119,7 +120,7 @@
   \subsection{Classes}
   \emph{\textbf{Imagine further}} - someone has developed a good underlying design (or \emph{template}) for shoes. In OOP, this can be refered to as a \emph{\textbf{class}}. In essence, a \emph{class} is like a recipe that can be used as the basic for making many similar, but differentiated, \emph{objects}. The shoemaker could create a \emph{class} (template, recipe, etc.) for a generic shoe design. That class could then be used to mass produce however many shoes of that type (with whatever specified variations) that the shoemaker wants. In terms of OOP, the shoe template would be the \emph{class} used to create individual shoe \emph{objects}, whereby each pair of shoes would be considered an \emph{instance} of \textbf{Class} Shoe.\par
   As programmers, and problem solvers (e.g. think about Algebra), the goal is not to spend all our time focused on very specific problems. Rather, we attempt to represent and solve as many problems as possible at once. Sometimes, it may indeed be necessary to specify the behaviors for very particular interactions in very particular contexts. Cf., we may use particular greetings in particular situations (e.g. a specific handshake for a specific friend)- but before we develop specific greetings we develop a generalized greeting such as \emph{Hi!} that can be broadly applicable.\par
-  \textbf{\emph{But what does that mean????}} In short, as programmers and people, it is not time efficient to develop specific greetings for each individual person and take that approach to developing greetings for each possible random encounter. Someone could spend the better part of a month just planning out what they might say during a quick trip to the grocery store. Much more time effective is to plan a \emph{generalized} i.e. \emph{absracted} approach and simply plan on saying ``hello'' to everyone and plan exceptions from there. For example, plan on saying ``hello'' to everyone except for people whose name is known - then say ``hello \mintinline{c}{$personsname}.'' This \emph{abstracted} approach is the essence of OOP.\par
+  \textbf{\emph{But what does that mean????}} In short, as programmers and people, it is not time efficient to develop specific greetings for each individual person and take that approach to developing greetings for each possible random encounter. Someone could spend the better part of a month just planning out what they might say during a quick trip to the grocery store. Much more time effective is to plan a \emph{generalized} i.e. \emph{abstracted} approach and simply plan on saying ``hello'' to everyone and plan exceptions from there. For example, plan on saying ``hello'' to everyone except for people whose name is known - then say ``hello \mintinline{c}{$personsname}.'' This \emph{abstracted} approach is the essence of OOP.\par
   In Java, or other similarly \emph{object oriented} programming languages, a class might simply be defined by something such as:
  \begin{minted}{Java}
   Class Person{ }
@@ -129,8 +130,8 @@ However, such a code by itself is useless - because this \mintinline{Java}{Class
 \subsection{Data types}
   
 One of the biggest, most important concepts in programming, and perhaps in the modern world, is that there are different types of data. We use different types pf data to answer different types of questions. For example, if someone asks ``What type of cookies are those?'' - the response ``12'' is not helpful or useful. Similarly, if someone asks ``How many cookies do you have?'' and is answered with ``chocolate chip'' - the response is neither helpful nor useful. A specific question requires a specific type of response.\par
-In order to solve any problem, it is first important to understand what the problem is, the characteristics of the problem, and the likely characteristics of the solution. For example, if we are deciding on the types of cookies for a class party - some of the information we might need are numbers and type of cookies.\emph{Number} and \emph{Type} would be the data types we would use to discuss cookies. More cookie specific data types might include \emph{sugar-type} or \emph{leavening-agent}. As can be seen with the cookie example - certain data types make more sense based on the environment. In a cookie specific environment \emph{sugar-type} and \emph{leavening-agent} are very useful. However, in the design of cars they would basically be useless.\par
-Data types in programming are those types of data that have been found to be most useful in programming i.e. computer related tasks. Therefore, each programming language has its own built in set of a data types. There is significant overlap - because there is significant overlap in the function of purpose of computer languages - also there is significant overlap because all computer languages must be designed to work on computers i.e. the actual specifics and architecture of processors determines the shape that a programming language takes - e.g. certain data types reflect the amount of space available in the computer's working memory. \par
+In order to solve any problem, it is first important to understand what the problem is, the characteristics of the problem, and the likely characteristics of the solution. For example, if we are deciding on the types of cookies for a class party - some of the information we might need are numbers and type of cookies.\emph{Number} and \emph{Type} would be the data types we would use to discuss cookies. More cookie specific data types might include \emph{sugar-type} or \emph{leavening-agent}\footnote(Leavening agents such as yeast or baking soda make breadrise.). As can be seen with the cookie example - certain data types make more sense based on the environment. In a cookie specific environment \emph{sugar-type} and \emph{leavening-agent} are very useful. However, in the design of cars they would basically be useless.\par
+Data types in programming are those types of data that have been found to be most useful in programming i.e. computer related tasks. Therefore, each programming language has its own built in set of a data types. There is significant overlap - because there is significant overlap in the function of computer languages - also, there is significant overlap because all computer languages must be designed to work on computers i.e. the actual specifics and architecture of processors determines the shape that a programming language takes - e.g. certain data types reflect the amount of space available in the computer's working memory. \par
 \subsubsection{Data Types in Java}
 In Java, the built-in i.e. hard-coded data types are referred to as \emph{primitives}. The \emph{primitive} data types in Java include:
 
@@ -140,7 +141,7 @@ In Java, the built-in i.e. hard-coded data types are referred to as \emph{primit
 \begin{itemize}
 \item Whole numbers
   \begin{itemize}
-  \item byte - a \textbf{whole number} (\emph{integer}) between -128 and 127 (8 bits)
+  \item byte - a \textbf{whole number} (\emph{integer}) between -128 and 127 (8 bits\footnote{A bit is a single binary value of 0 or 1.})
   \item short - an \emph{integer} between -32768 and 32767 (16 bits)
   \item int  - an \emph{integer} between -2,147,483,648 and 2,147,483,647 (32 bits)
   \item long -  an \emph{integer} between 9,223,372,036,854,775,808 and
@@ -226,7 +227,7 @@ There is the \emph{public class} declaration with the name of the program (match
 
 \subsubsection{Using data types with a class in Java}
 When creating a \emph{class} \textbf{Person}, it may be useful to provide some attributes. \mintinline{Java}{class Person} is created here - there are no mandatory data types. It is at the discretion of the programmer to decide which data types may be most useful for \mintinline{Java}{class Person}.\footnote{The objects being created, as well as \emph{object oriented} programming in general, are not structured solely to help the computer run best - but rather, the design is to help people utilize the computer most efficiently. The objects, their data, their data labels, their methods - are all approaches used by the programmer to make a program do what she decides. For the computer, everything boils down to 1's and 0's - everything else is to help the programmer use the computer (i.e. program the computer) most effectively.}\par
-Defining Person objects, the programmer may want to use common person related qualities such as: age, last name, first name, and whether the person is still a student. Consequently, the \mintinline{Java}{class Person} will be created with the corresponding data types.
+Defining \emph{Person} objects, the programmer may want to use common person related qualities such as: age, last name, first name, and whether the person is still a student. Consequently, the \mintinline{Java}{class Person} will be created with the corresponding data types.
 
 \label{code:mostbasicdatatypes}
 \begin{minted}{Java}
@@ -247,15 +248,15 @@ Objects, i.e. instances of a class, are created with the \emph{class constructor
 \label{code:simpleclassconstructor}
 
 
-We will then create a class contructor to accept values for first name, last name, age, and whether someone is still a student. Values are passed \emph{inside parentheses (...)}. The class constructor is the mechanism for creating new objects i.e. new \emph{instances} of a class. Consequently, we must specify which data should be passed to a class constructor. The variable names used inside the class constructor are \emph{only recognized \textbf{inside} the class constructor}. Consider:
+We will then create a \emph{class constructor} to accept values for first name, last name, age, and whether someone is still a student. Values are passed \emph{inside parentheses (...)}. The class constructor is the mechanism for creating new objects i.e. new \emph{instances} of a class. Consequently, we must specify which data should be passed to a class constructor. The variable names used inside the class constructor are \emph{only recognized \textbf{inside} the class constructor}. Consider:
 \begin{minted}{Java}
   public Person(String fn) {
     this.firstname = fn;
     }
 }
 \end{minted}
-This class constructor allows us to create a person and specify their first name upon creation i.e. \mintinline{Java}{Person billy = new Person("billy");} creates a new Person object with the value \emph{billy} for the firstname variable. Note the use of \mintinline{Java}{this.firstname} - the \textbf{this} is used to insure that the value specified is assigned to the \emph{instance} being created. Here, the \emph{this} is not completely necessary but is important for developing good coding habits. Further, the ``\textbf{.}'' specifies that the firstname is the value for ``firstname'' belonging to \emph{this}. Elsewhere, the syntax \mintinline{Java}{billy.lastname} could be used to directly refer to the object \emph{billy}'s lastname value.\footnote{However, directly calling \mintinline{Java}{billy.lastname} is not the preferred practice in Java. Rather, \emph{getters} and \emph{setters} should be used. [These are discussed later.]}\par
-In order to pass more values at the creation of each Person \emph{instance}, we will need to specify the values to be passed. Continuing with in the same vein, we can create an additional constructor - one that looks almost identical but accepts more information. In Java, having duplicate constructors (or methods) with the same name that only differ by the data they accept, is called \emph{overloading}. Our new constructor that accepts first name, last name, and age is:
+This class constructor allows us to create a person and specify their first name upon creation i.e. \mintinline{Java}{Person billy = new Person("billy");} creates a new Person object with the value \emph{billy} for the firstname variable. Note the use of \mintinline{Java}{this.firstname} - the \textbf{this} is used to ensure that the value specified is assigned to the \emph{instance} being created. Here, the \emph{this} is not completely necessary but is important for developing good coding habits. Further, the ``\textbf{.}'' specifies that the firstname is the value for ``firstname'' belonging to \emph{this}. Elsewhere, the syntax \mintinline{Java}{billy.lastname} could be used to directly refer to the object \emph{billy}'s lastname value.\footnote{However, directly calling \mintinline{Java}{billy.lastname} is not the preferred practice in Java. Rather, \emph{getters} and \emph{setters} should be used. [These are discussed later.]}\par
+In order to pass more values at the creation of each Person \emph{instance}, we will need to specify the values to be passed. Continuing with in the same vein, we can create an additional constructor - one that looks almost identical but accepts more information. In Java, having duplicate constructors (or methods) with the same name that only differ by the data they accept, is called \emph{\textbf{overloading}}. Our new constructor that accepts first name, last name, and age is:
 \begin{minted}{Java}
 public Person(String fn, String ln, int a){
         this.firstname=fn; 
@@ -268,6 +269,7 @@ To use this constructor we would pass first name, last name, and age when creati
 \begin{minted}{Java}
   Person suzy = new Person("Suzy", "Jenkins", 12);
 \end{minted}
+
 
 \textbf{Notice}: as with ``billy'' the names ``Suzy'' and ``Jenkins'' are in quotes. The quotation marks inform the \emph{compiler} that we are sending a \emph{String} and not a \textbf{variable}. \par
 The program thus far might appear so:
@@ -348,6 +350,8 @@ Now any Person object can use the method. For any method that belongs to a class
     suzy.sayHi();
   }
 \end{minted}
+
+\textbf{Note this ``\textbf{s}uzy'' not ``\textbf{S}uzy'' because \emph{suzy} is the variable name used when creating the object i.e. Person suzy = new Person;.}
 
 
 \subsubsection{\textit{Need to know}: Using \emph{getters} and \emph{setters}
@@ -446,11 +450,12 @@ Creating setters, which are commonly placed before \emph{getters} in the \emph{c
 
 \item How and why do we use a \emph{class}?
 
+\item Write your home address (or a similar imaginary address) as a characteristic of a Java object i.e. start with the largest unit and get progressively smaller: \textbf{USA}.\emph{Texas}.\textit{SanAntonio}.etc.... 
 
 \item Create a class \textbf{Animal}. \\The class should have:
   \\
    \begin{enumerate}
-   \item \textbf{Five} different \textbf{data types}
+   \item \textbf{Five} different \emph{variables} with at least 3 different \textbf{data types} e.g. boolean, int, String, float, double, etc.
    \item Two \emph{different} \textbf{class constructors}
    \item Three \emph{getters}
    \item Three \emph{setters}
@@ -471,8 +476,9 @@ Creating setters, which are commonly placed before \emph{getters} in the \emph{c
 
 \item What is the code for the \emph{main} method in Java?
 
-  \item When and why do we use the main method in Java?
-  
+\item When and why do we use the main method in Java?
+
+
 \end{enumerate}
 
 %\end{code}
@@ -580,16 +586,107 @@ For example, the following code will print ``pass'' if the \textbf{integer} \emp
     System.out.println(``pass'');
   } else {
     System.out.println(``fail'');
-    }
+  }
+\end{minted}
 
-  \end{minted}
+\noindent Indeed, we can connect several \emph{if}, \emph{else if} statements to construct more complex logic. The careful structuring of increasingly complex \emph{if}, \emph{else if} statements can create more nuanced programs. \\
+Consider, for example, a program that will assign a letter grade based on a numeric score:\\
+\begin{minted}{Java}
+  if (grade >= 90) {
+    System.out.println(``A'');
+  } else if (grade >= 80) {
+    System.out.println(``B'');
+  } else if (grade >= 70) {
+    System.out.println(``C'');
+  } else {
+    System.out.println(``fail'');
+  }
+\end{minted}
 
+Notice especially, that the final \textbf{else} serves to define what to do if all the preceding criteria are not met. A grade will be greater than or equal to 90, 80, 70 or it is failing.\par
+
+A common exercise asked of job applicants is to design  \emph{if} to determine whether a number is divisible by 3, 5, or both. Only one response should be printed. If a number is divisible by 3 and 5 the specified response (and only specified response) is printed - most failed programs print all three responses or the divisible by 3 or divisible by 5 response.\par
 
 %https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html
 %https://docs.oracle.com/javase/tutorial/java/nutsandbolts/if.html
 %https://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html
 %https://www.cs.fsu.edu/~myers/c++/notes/control1.html
 
+
+
+\subsection{Repetition AKA \emph{looping}}
+
+
+One of the great advantages of computers is that they are very good at doing things - repeatedly and very fast. In Java, we use \emph{for}, \emph{while}, and \emph{do while} loops. The most archetypal of loops in Java is the \textbf{\emph{while}} loop. Its use and syntax is very straight forward. Basically, as long as some condition is met, the specified action continues. The basic structure of a \textbf{while} loop is \colorbox{aliceblue}{while}\textbf{(}\colorbox{green}{some condition is met}\textbf{)}\textbf{\{}\colorbox{pink}{do this action();}\textbf{\}}. \par
+
+For example, the following \mintinline{Java}{while} loop will print ``it's so true'' continously because the condition always evaluates to \textbf{true}.
+\begin{minted}{Java}
+  while(true){
+    System.out.println(``it's so true''); 
+  }
+\end{minted}
+
+How then might a \emph{while} loop exit? In the example below, the \emph{while} loop counts up to 10 and then exits because the integer \emph{\textbf{i}} is no longer less than 10. Note the \emph{++} - it means that 1 is added to the variable \textbf{\emph{i}} each time the loop repeats (i.e. each time it \emph{iterates}).
+
+\begin{minted}{Java}
+  int i =0; 
+  while(i < 10){
+    i++; 
+  }
+\end{minted}
+
+\subsection{\emph{for} statements}
+It turns out that it is very useful to have computers \emph{iterate}\footnote{iterate is much like \emph{count through} or do something in a \emph{step-by-step} manner.} through various lists of commands. In many programming languages, including Java, the \emph{for} loop is used to count \emph{up} or emph{down} and then exit at a specified value. The basic syntax of a for loop is: \\ \colorbox{bananamania}{for} \textbf{(}\colorbox{green}{initial value}\textbf{;} \colorbox{pink}{condition}\textbf{;}\colorbox{aliceblue}{increment}\textbf{)}\textbf{\{}\colorbox{yellow}{action}\textbf{;}\textbf{\}} \par
+
+For example, the following \emph{for} loop starts at 0, will continue as long as \emph{i} is less than 10, and the value of \emph{i} goes up by 1 each \emph{iteration}. During each iteration the value of \emph{i} will be printed\footnote{Note the lack of quotation marks around \emph{i}.}.
+\begin{minted}{Java}
+  for (int i=0; i<10; i++){
+    System.out.println(i);
+  }
+\end{minted}
+
+A very common use for \emph{for} loops are as counters - either counting up or down. Here we see a \emph{for} loop that counts down from 100 and stops at 1. \textbf{i \emph{>}0} is used to stop the counter before 0 and \emph{\textbf{i--}} is used to count down rather than up.
+\begin{minted}{Java}
+  for (int i=100; i>0; i--){
+    System.out.println(i);
+  }
+\end{minted}
+
+
+
+\subsubsection{Doing things, e.g. math, with \emph{for} loops}
+Using Java's basic mathematical operators, we can begin \emph{iterating} through many different calculations.
+\begin{tcolorbox}[enhanced,width=5in,center upper,
+    fontupper=\bfseries,drop fuzzy shadow southwest,
+    boxrule=0.4pt,sharp corners,colframe=yellow!80!black,colback=yellow!10]
+In Java, the basic mathematical operators are:  
+\begin{itemize}
+\item addition - 2\textbf{+}2 == 4
+\item subtraction - 2\textbf{-}2 == 0
+\item multiplication - 6\textbf{*}3 == 18
+\item division - 6\textbf{/}3 == 2
+\item \emph{modulo} or remainder - 248\textbf{\%}2 == 0
+\end{itemize}
+\end{tcolorbox}
+\par
+
+These mathematical operators can leverage the values created by \emph{for} loops.
+For example, the following \emph{loop} will \emph{iterate} through the values of \emph{i} up to 100 - showing the result of the number \emph{\textbf{i}} multiplied by 5 i.e. 1 x 5, 2 x 5, 3 x 5, 4 x 5, etc.
+\begin{minted}{Java}
+  for (int i = 0; i <= 100; i++){
+    System.out.println(i * 5);
+  }
+\end{minted}
+\par
+Though this is not the most exciting program but illustrates the underlying utility of a \emph{for} loop.
+
+
+
+
+%https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html
+
+
+%https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html
 
 \newpage
 % iteration practice based on students' missed questions
