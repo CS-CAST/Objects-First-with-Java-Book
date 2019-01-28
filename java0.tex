@@ -19,6 +19,9 @@
 
 %https://stackoverflow.com/questions/1491717/how-to-display-a-content-in-two-column-layout-in-latex
 \usepackage{multicol}
+
+
+
 %pretty stuff
 \usepackage{blindtext}
 %\usepackage[skins]{tcolorbox}
@@ -702,13 +705,16 @@ Similarly, using \emph{nested} \textbf{\emph{for}} loops - \emph{for} loops insi
 \end{minted}
 \par
 
+% \textbf{Iteration}  & \textbf{Value of \emph{i}} &  \textbf{Iteration}  & \textbf{Value of \emph{i}} \\
+
 The following table shows the values of \emph{i} and \emph{j} for each iteration.
 %\begin{tabu} to 80mm { | X[l] | X[c] | | X[l] | X[c] | }
+%\sloppy
+
 \begin{longtabu} to 120mm { | X[l] | X[c] |  X[c] | X[l] |  X[c] |  X[c] |}
-  %\sloppy
   \hline
   \textbf{Iteration}  & \textbf{ \emph{i}} &  \textbf{ \emph{j}} &\textbf{Iteration}  & \textbf{ \emph{i}} &  \textbf{ \emph{j}} \\
-% \textbf{Iteration}  & \textbf{Value of \emph{i}} &  \textbf{Iteration}  & \textbf{Value of \emph{i}} \\
+
  \hline
  iteration 1 & 0 & 0 & iteration 25 & 1 & 11 \\ 
  \hline
@@ -777,6 +783,29 @@ iteration 24 & 1 & 10 & iteration 48 & 3 & 8 \\
 %http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/tabu/tabu.pdf
 Of course, we as people use computers and for loops to compute faster and more extensively than we as humans can. \textbf{However}, it is important that we develop basic proficiency and understanding of how for loops work.
 Examine the following code and and complete the accompanying table.
+
+
+\begin{minted}{Java}
+  for(int i=0;i<5;){
+    for(int j=0; j<5; j++){
+      i++;
+  }}
+\end{minted}
+
+\begin{longtabu} to 120mm { | X[l] | X[c] |  X[c] | X[l] |  X[c] |  X[c] |}
+  \hline
+  \textbf{Iteration}  & \textbf{ \emph{i}} &  \textbf{ \emph{j}} &\textbf{Iteration}  & \textbf{ \emph{i}} &  \textbf{ \emph{j}} \\
+
+ \hline
+ iteration 1 &  &  & iteration 5 &  &  \\ 
+ \hline
+ iteration 2 &  &  & iteration 6 &  &  \\ 
+ \hline
+iteration 3 &  &  & iteration 7 &  &  \\ 
+\hline
+iteration 4 &  &  & iteration 8 &  &  \\ 
+\hline
+\end{longtabu}
 
 
 
