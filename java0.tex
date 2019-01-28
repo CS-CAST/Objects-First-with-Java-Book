@@ -15,6 +15,7 @@
 
 \usepackage{tabu}
 %https://www.overleaf.com/learn/latex/Tables
+\usepackage{longtable}
 
 %https://stackoverflow.com/questions/1491717/how-to-display-a-content-in-two-column-layout-in-latex
 \usepackage{multicol}
@@ -678,8 +679,88 @@ For example, the following \emph{loop} will \emph{iterate} through the values of
   }
 \end{minted}
 \par
-Though this is not the most exciting program but illustrates the underlying utility of a \emph{for} loop.
+Though this is not the most exciting program but illustrates the underlying utility of a \emph{for} loop. Moreover, \emph{for} loops can become even more useful combined with other \emph{selection} and \emph{repetition} such as \emph{if} statements or additional \emph{for} loops. \par
+In the following example, we can print every even number between 0 and 1000 as even or odd by using the \emph{modulo} \textbf{\%} operator. Namely, a number divided by 2 with no remainder is even; otherwise, it is odd.
+\begin{minted}{Java}
+  for (int i = 0; i < 1000; i++){
+    if(i%2==0){
+      System.out.println(i + `` is even'');
+    } else {
+      System.out.println(i + ``is odd'');
+    }
+  }
+\end{minted}
 
+Similarly, using \emph{nested} \textbf{\emph{for}} loops - \emph{for} loops inside other \emph{for} loops can be useful. In the example below, each \emph{for} loop counts up to 12 - thereby creating a 12 x 12 multiplication table.  \footnote{\emph{for} loops can use any variable. They commonly use \emph{i} to refer to \emph{index} variable (from math) and nested \emph{for} loops use the subsequent letters in the alphabet i.e., j, k, l, m, and n.}
+
+\begin{minted}{Java}
+  for (int i = 0; i <= 12; i++) {
+    for (int j = 0; j <= 12; j++) {
+      System.out.println(i + "x" + j + " = " + (i * j));
+    }
+  }
+\end{minted}
+\par
+
+The following table shows the values of \emph{i} and \emph{j} for each iteration.
+%\begin{tabu} to 80mm { | X[l] | X[c] | | X[l] | X[c] | }
+\begin{longtabu} to 120mm { | X[l] | X[c] |  X[c] | X[l] |  X[c] |  X[c] |}
+  %\sloppy
+  \hline
+  \textbf{Iteration}  & \textbf{ \emph{i}} &  \textbf{ \emph{j}} &\textbf{Iteration}  & \textbf{ \emph{i}} &  \textbf{ \emph{j}} \\
+% \textbf{Iteration}  & \textbf{Value of \emph{i}} &  \textbf{Iteration}  & \textbf{Value of \emph{i}} \\
+ \hline
+ iteration 1 & 0 & 0 & iteration 25 & 1 & 11 \\ 
+ \hline
+ iteration 2 & 0 & 1 & iteration 26 & 1 & 12 \\ 
+ \hline
+iteration 3 & 0 & 2 & iteration 27 & 2 & 0 \\ 
+\hline
+iteration 4 & 0 & 3 & iteration 28 & 2 & 1 \\ 
+\hline
+iteration 5 & 0 & 4 & iteration 29 & 2 & 2 \\ 
+\hline
+iteration 6 & 0 & 5 & iteration 30 & 2 & 3 \\ 
+\hline
+iteration 7 & 0 & 6 & iteration 31 & 2 & 4 \\ 
+\hline
+iteration 8 & 0 & 7 & iteration 32 & 2 & 5 \\ 
+\hline
+iteration 9 & 0 & 8 & iteration 33 & 2 & 6 \\ 
+\hline
+iteration 10 & 0 & 9 & iteration 34 & 2 & 7 \\ 
+\hline
+iteration 11 & 0 & 10 & iteration 35 & 2 & 8 \\ 
+\hline
+iteration 12 & 0 & 11 & iteration 36 & 2 & 9 \\ 
+\hline
+iteration 13 & 0 & 12 & iteration 37 & 2 & 10 \\ 
+\hline
+iteration 14 & 1 & 0 & iteration 38 & 2 & 11 \\ 
+\hline
+iteration 15 & 1 & 1 & iteration 39 & 2 & 12 \\ 
+\hline
+iteration 16 & 1 & 2 & iteration 40 & 3 & 0 \\ 
+\hline
+iteration 17 & 1 & 3 & iteration 41 & 3 & 1 \\ 
+\hline
+iteration 18 & 1 & 4 & iteration 42 & 3 & 2 \\ 
+\hline
+iteration 19 & 1 & 5 & iteration 43 & 3 & 3 \\ 
+\hline
+iteration 20 & 1 & 6 & iteration 44 & 3 & 4 \\ 
+\hline
+iteration 21 & 1 & 7 & iteration 45 & 3 & 5 \\ 
+\hline
+iteration 22 & 1 & 8 & iteration 46 & 3 & 6 \\ 
+\hline
+iteration 23 & 1 & 9 & iteration 47 & 3 & 7 \\ 
+\hline
+iteration 24 & 1 & 10 & iteration 48 & 3 & 8 \\ 
+\hline
+... & ... & ... & ...  & ...  & ... \\ 
+\hline
+\end{longtabu}
 
 
 
@@ -696,10 +777,12 @@ Though this is not the most exciting program but illustrates the underlying util
 %http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/tabu/tabu.pdf
 
 %\begin{comment}
-\begin{tabu} to 80mm { | X[l] | X[c] | | X[l] | X[c] | }
+%\begin{tabu} to 80mm { | X[l] | X[c] |  X[c] | X[l] |  X[c] |  X[c] |}
+  \begin{tabu} to 80mm { | X[l] | X[c] | | X[l] | X[c] | }
   %\sloppy
- \hline
- \textbf{Iteration}  & \textbf{Value of \emph{i}} &  \textbf{Iteration}  & \textbf{Value of \emph{i}} \\
+    \hline
+    \textbf{Iteration}  & \textbf{Value of \emph{i}} &  \textbf{Iteration}  & \textbf{Value of \emph{i}} \\
+ %\textbf{Iteration}  & \textbf{Value of \emph{i}} &  \textbf{value of \emph{j}} &\textbf{Iteration}  & \textbf{Value of \emph{i}} &  \textbf{value of \emph{j}} \\
  \hline
  iteration 0  & \ & iteration 5  & \  \\
  \hline
@@ -733,7 +816,8 @@ Though this is not the most exciting program but illustrates the underlying util
  Iterat  & Value of I & item 13 \\
  \hline
  item 21  & item 22  & item 23  \\
-\hline
+
+ \hline
 \end{tabu}
 \end{comment}
 
