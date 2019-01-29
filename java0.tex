@@ -783,8 +783,9 @@ iteration 24 & 1 & 10 & iteration 48 & 3 & 8 \\
 %http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/tabu/tabu.pdf
 Of course, we as people use computers and for loops to compute faster and more extensively than we as humans can. \textbf{However}, it is important that we develop basic proficiency and understanding of how for loops work.
 Examine the following code and and complete the accompanying table.\par
+\begin{verbatim}
 
-
+\end{verbatim}
 \noindent \textbf{Practice 1.}\\
 
 \begin{minted}{Java}
@@ -796,7 +797,7 @@ Examine the following code and and complete the accompanying table.\par
 
 
 %\begin{comment}
-\begin{longtabu} to 120mm { | X[l] | X[c] |  X[c] | X[l] |  X[c] |  X[c] |}
+\begin{tabu} to 120mm { | X[l] | X[c] |  X[c] | X[l] |  X[c] |  X[c] |}
   \hline
   \textbf{Iteration}  & \textbf{ \emph{i}} &  \textbf{ \emph{j}} &\textbf{Iteration}  & \textbf{ \emph{i}} &  \textbf{ \emph{j}} \\
 
@@ -809,10 +810,11 @@ iteration 3 &  &  & iteration 7 &  &  \\
 \hline
 iteration 4 &  &  & iteration 8 &  &  \\ 
 \hline
-\end{longtabu}
+\end{tabu}
+
 %\end{comment}
-
-
+\begin{verbatim}
+\end{verbatim}
 \noindent \textbf{Practice 2.}\\
 \begin{minted}{Java}
   for (int i=0; i<3; ){
@@ -823,36 +825,38 @@ iteration 4 &  &  & iteration 8 &  &  \\
   }
 \end{minted}
 
-\begin{comment}
-\begin{tabu} to 80mm { | X[l] | X[c] | | X[l] | X[c] | }
+%\begin{comment}
+\begin{tabu} to 120mm { | X[l] | X[c] |  X[c]  | X[l] | X[c] |  X[c] | }
   \hline
-  \textbf{Iteration}  & \textbf{Value of \emph{i}} & \textbf{Value of \emph{j}} &\textbf{Iteration}  & \textbf{Value of \emph{i}}  & \textbf{Value of \emph{j}} \\
+  \textbf{Iteration}  & \emph{i} & \emph{j} & \textbf{Iteration}  & \emph{i}  & \emph{j} \\
   \hline
-  iteration 0  &  & \ & iteration 5  & \ & \  \\
+  \emph{it. 0}  &  & \ &  \emph{it. 5}  & \ & \  \\
   \hline
-  iteration 1 &  \ & \ & iteration 6  & \ & \ \\
+  \emph{it. 1} &  \ & \ &  \emph{it. 6}  & \ & \ \\
   \hline
-  iteration 2 &   \ &  \ & iteration 7  & \ & \ \\
+  \emph{it. 2} &   \ &  \ &  \emph{it. 7}  & \ & \ \\
   \hline
-  iteration 3 &  \ & \ & iteration 8  & \ & \ \\
+  \emph{it. 3} &  \ & \ &  \emph{it. 8}  & \ & \ \\
   \hline
-  iteration 4 &  \  & \ & iteration 9  & \ & \ \\
+  \emph{it. 4} &  \  & \ &  \emph{it. 9}  & \ & \ \\
   \hline
-  \hline
+%  \hline
 \end{tabu}
-\end{comment}
 
+%\end{comment}
+\begin{verbatim}
 
-\begin{comment}
+\end{verbatim}
 \noindent \textbf{Practice 3.}\\
 \begin{minted}{Java}
-for(int i=0; i<5;i++){
-for(int j=0; j<5; j++){
-for(int k=0; k<5;k++){
-int a= i+j+k;
-}}}
+  for(int i=0; i<5;i++){
+    for(int j=0; j<5; j++){
+      for(int k=0; k<5;k++){
+        int a= i+j+k;
+      }
+    }
+  }
 \end{minted}
-\end{comment}
 
 \begin{comment}
 \begin{tabu} to 80mm { | X[l] | X[c] |  X[c] | X[c]  | X[l] | X[c] | X[l] | X[c] |  X[l] | X[c] | }
